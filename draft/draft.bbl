@@ -1,0 +1,31 @@
+\begin{thebibliography}{}
+
+\bibitem[Hood and Trojer 2012]{pon}
+Hood, D. and Trojer, E. (2012).
+\newblock {\em Gigabit-Capable Passive Optical Network}.
+\newblock Wiley, 1st edition.
+
+\bibitem[Karloff 1991]{linear}
+Karloff, H. (1991).
+\newblock {\em Linear Programming}.
+\newblock Birkhäuser, 1st edition.
+
+\bibitem[Kokangul and b 2011]{optpon2}
+Kokangul, A. and b, A.~A. (2011).
+\newblock Optimization of passive optical network planning.
+
+\bibitem[Li and Shen 2009]{optpon}
+Li, J. and Shen, G. (2009).
+\newblock Cost minimization planning for greenfield passive optical networks.
+
+\bibitem[Luenberger and Ye 2007]{nonlinear}
+Luenberger, D.~G. and Ye, Y. (2007).
+\newblock {\em Linear and Nonlinear Programming}.
+\newblock Springer, 3rd edition.
+
+\bibitem[Papadimitriou and Steiglitz 1998]{papad}
+Papadimitriou, C.~H. and Steiglitz, K. (1998).
+\newblock {\em Combinatorial Optimization}.
+\newblock Dover Publications, 1st edition.
+
+\end{thebibliography}

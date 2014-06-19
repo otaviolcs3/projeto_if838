@@ -1,0 +1,9 @@
+Modelagem:
+	> Representar o problema de otimização através de grafos, funções objetivos, restrições etc.
+	> Definir heurísticas/algoritmos de aproximação/métodos exatos.
+	> Definir CAPEX através do modelo.
+	> Definir e quantificar classes de significância dos custos de capital.
+Capital:
+	> OLTs, ONUs, cabeamento, "amplificadores", splitters, switches, custos de implantação
+Custos Operacionais:
+	> Aluguéis, manutenção, custos de energia, despesas indiretas

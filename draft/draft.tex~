@@ -1,0 +1,245 @@
+\documentclass[12pt]{article}
+
+\usepackage{sbc-template}
+
+\usepackage{graphicx,url}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[brazil]{babel}
+\usepackage{amsfonts}
+\usepackage{verbatim}
+\newcommand{\blank}[1]{\hspace*{#1}}      
+\sloppy
+
+\title{Metodologia de Redução de Custos no Planejamento de Redes de Acesso PON}
+
+\author{Kelvin Batista da Cunha\inst{1},
+Marcus Felipe Raele Rios\inst{2},
+Otávio Lucas Alves da Silva\inst{3}
+}
+
+\address{Centro de Informática - UFPE}
+\begin{document} 
+
+\maketitle
+%\tableofcontents
+\begin{resumo} 
+Este rascunho tem como objetivo  descrever brevemente uma metodologia de implementação de redes de acesso PON.
+Serão utilizadas heurísticas de otimização buscando minimizar \textit{Capital Expenditures} (CAPEX) e a partir do modelo obtido, estimar o \textit{Operational Expenditures} (OPEX).
+\end{resumo}
+
+
+\section{Rede óptica passiva - PON}
+Uma rede óptica passiva, ou do inglês PON (Passive Optical Network), é uma rede óptica ponto-multiponto que viabiliza o compartilhamento de uma única fibra óptica entre diversos pontos finais, os usuários. Não existem elementos ativos (embora em alguns casos seja necessário a utilização de equipamentos para compensar atenuação do sinal, dependendo da distância) entre o equipamento do provedor de acesso OLT (Optical Line Terminal) e o equipamento (ONU) instalado na aplicação do usuário.
+
+A divisão do sinal é feita utilizando um divisor ótico (splitter) que provê a divisão do sinal, no entanto existem perdas associadas a este processo, que são proporcionais a fração de divisão. Como seu funcionamento é em cascata, a perda é $\log_{2}(\mbox{número de saídas do splitter})\times\mbox{perda associada a uma divisão}$, onde ``número de saídas'' é uma potência de 2.
+
+O seu funcionamento de downstream é baseado em broadcast, significa que todas as mensagens enviadas pela a OLT vão para todas as ONU daquela rede, e cabe a ONU filtrar o que a pertence. No sentido upstream como as ONU compartilham a mesma fibra um protocolo de acesso múltiplo é usado, normalmente o TDMA (Time Division Multiple Access) em que cada ONU possui uma fração de tempo para enviar suas mensagens por meio da fibra compartilhada.
+
+Existem dois tipos de fibra: a multimodo e monomodo. A principal diferença está associada à forma em que a luz e transmitida no núcleo da fibra. O núcleo da fibra multimodo transmite muitos modos. A propagação de modos causa dispersão modal, que se traduz em uma redução significativa na escala ou na velocidade de transmissão de sinal. Simplesmente a velocidade de propagação do sinal óptico não é a mesma para todos os modos, devido aos seus diferentes comprimentos de trajeto entre o transmissor e o receptor, resultando de diferentes ângulos de reflexão de feixes de luz. O fenômeno da dispersão modal é praticamente eliminado em um núcleo da fibra monomodo que transmite apenas um modo de luz com comprimento de onda específico. No caso de uma fibra monomodo, a onda de luz se propaga quase paralela ao eixo da fibra. Para compensar o efeito da dispersão, devem também haver elementos na rede que tratem esse tipo de problema. Isso deve ser levado em consideração ao se fazer o planejamento da rede de acesso PON num dado contexto urbano.
+
+\section{Descrição do Problema}
+A ausência de metodologias de planejamento de redes de acesso PON em regiões  urbanas pode acarretar em redes baseadas apenas na experiência prévia do planejador. Embora  na maior parte das vezes distribuição atenda de forma satisfatória a demanda por largura de banda, os CAPEX e OPEX associados geralmente não são os melhores que uma operadora poderia assumir. Durante o texto, iremos modelar a minização do CAPEX como um problema de otimização, definir uma heurística para encontrar uma solução subótima e a partir desta, definir os custos reais da implantação da rede, incluindo fatores como trajetórias dos cabos nas vias, custo de mão de obra, OLTs, ONUs etc.
+
+A metodologia apresentada considerará o modelo \textit{Fiber to The Home} (FTTH), i.e., cada residência possuirá sua própria ONU. Desta forma, não precisaremos considerar  tecnologias híbridas, como a \textit{Hybrid Fiber Coaxial} (HFC), simplificando a modelagem.
+
+A heurística e a modelagem aqui apresentadas, são fortemente baseada nas do artigo \cite{optpon}. Nele, é descrito o \textit{Recursive Association and Relocation Algorithm} (RARA), algoritmo que retorna um conjunto de splitters e suas respectivas associações com ONUs. Todas as restrições do problema de otimização devem ser respeitadas. Por fim, iremos apresentar um algoritmo, que, dada a localização dos splitters e suas associações com as ONUs, retorne a trajetória nas vias por onde passarão as fibras. Particularmente, este algoritmo considera fatores mais realistas que a modelagem do problema de otimização. Veremos quais mais adiante.
+
+\subsection{Modelagem do Problema}
+As principais restrições do problema de otimização podem ser divididas em duas principais categorias:
+\begin{itemize}
+\item Restrições que se referem ao funcionamento de uma rede de acesso PON: ONUs precisam se conectar a splitters, e splitters precisam se conectar a splitters de mais alta ordem ou a OLTs; um splitter não poderá disponibilizar mais canais que sua capacidade etc.
+\item Restrições referentes às limitações de uma rede de acesso PON: máxima distância entre ONU e OLT (devido a atenuação e dispersão), máxima distância entre duas ONUs conectadas ao mesmo splitter.
+\end{itemize}
+
+O modelo matemático de otimização aqui apresentado mostrará apenas um subconjunto das restrições do modelo apresentado em \cite{optpon}, aquelas que acreditamos serem essenciais para o entendimento do problema. Iremos mudar de maneira significativa a restrição a cerca da distância relativa entre OLT e splitter e entre splitter e ONU.
+
+Função objetivo (minimização): 
+
+\begin{equation}
+\alpha \sum_{i\in S} \phi_i + \beta \sum_{i\in S}\sum_{k \in T} \phi_i T_k \pi_i^k + (\gamma + \theta)\left (\sum_{i\in S} \phi_i l_i^s +\sum_{i\in S} \sum_{j\in U} \psi_i^jl_i^j \right )
+\end{equation}
+
+Restrições das variáveis:
+
+\begin{eqnarray}
+\sum_{i \in S} \psi_i^j = 1, &\forall j \in U\label{eq:rest4}\\
+\Delta \cdot \phi_i \ge \sum_{j\in U} \psi_i^j, &\forall i \in S\label{eq:rest5}\\
+\sum_{j\in U} \psi_i^j \le \sum_{k \in T} T_k\pi_i^k, &\forall i \in S\label{eq:rest6}\\
+l_i^s = |x_i^s - x_0| + |y_i^s - y_0|, &\forall i \in S\label{eq:rest1}\\
+l_i^j = |x_i^s - x_j^0| + |y_i^s - y_j^0|, &\forall i \in S, \forall j \in U\label{eq:rest2}\\
+l_i^s + l_i^j \le l^{{\rm max}}_i\label{eq:rest3}\\
+l_i^{{\rm max}} \le l^{\rm max}\label{eq:rest7}
+\end{eqnarray}
+
+Onde os parâmetros são dados por:
+\begin{itemize}
+\item Conjuntos: $S$ é o conjunto dos splitters, $T$ é o conjunto dos tipos de splitters (sendo da forma $1:2^k$, onde geralmente $1\le k\le 7$) e $U$ é o conjunto das ONUs.
+\item Parâmetros:
+\begin{itemize}
+\item $x_0, y_0$: coordenadas da posição do \textit{central office}, onde estarão as OLTs.
+\item $x_i^0, y_i^0$: coordenadas da posição da $i$-ésima ONU, para $i\in U$.
+\item $T_k$: número total de saídas do $k$-ésimo splitter.
+\item $\alpha, \beta$: respectivamente, o custo por OLT e por saída de cada splitter. No modelo proposto $\alpha$ e $\beta$ são constantes.
+\item $\gamma, \theta$: respectivamente, os fatores de custo de mão de obra para implantação da rede e da fibra/cabo. Ambos os fatores são contabilizados por km da rede PON.
+\item $\Delta$: um valor tão grande quanto queiramos. Idealmente, $\Delta = \infty$.
+\item $l^{{\rm max}}$: a distância máxima permitida entre qualquer ONU e a OLT.
+\end{itemize}
+\item Variáveis:
+\begin{itemize}
+  \item $x_i^s,y_i^s$: as coordenadas da posição do $i$-ésimo splitter, para $i\in S$.
+  \item $\phi_i \in \{0,1\}$: o indicador de uso do $i$-ésimo splitter, para $i\in S$. $\phi_i$ assume valor $1$ se é usado na implantação da rede e $0$ caso contrário.
+  \item $\phi_i^j \in \{0,1\}$: o indicador de que o $i$-ésimo splitter e a $j$-ésima ONU estão conectados, para $i\in S, j\in U$. $\phi_i^j$ assume valor $1$ quando o $i$-ésimo splitter e a $j$-ésima ONU estão conectados e $0$ caso contrário.
+  \item $\pi_i^k \in \{0,1\}$: o indicador de que o $i$-ésimo splitter é do $k$-ésimo tipo, para $i\in S,k\in T$. $\pi_i^k$ assume valor $1$ se o $i$-ésimo splitter é do $k$-ésimo tipo e $0$ caso contrário.
+  \item $l_i^s$: distância do $i$-ésimo splitter para o \textit{central office}, para $i \in S$.
+  \item $l_i^j$: distância entre o $i$-ésimo splitter e a $j$-ésima ONU, para $i \in S, j \in U$.
+  \item $l_i^{{\rm max}}$: distância máxima entre as ONUs conectadas ao $i$-ésimo splitter, para $i\in S$. Essa distância poderá mudar conforme o tipo do $i$-ésimo splitter muda.
+\end{itemize}
+\end{itemize}
+
+A restrição \ref{eq:rest4} afirma que cada ONU deve se conectar obrigatoriamente a um, e a apenas um splitter. A restrição \ref{eq:rest5} nos diz que um splitter só deve ser usado se existir pelo menos uma ONU conectada a ele. A restrição \ref{eq:rest6} sugere que a quantidade de ONUs conectadas a um splitter deve ser menor ou igual a quantidade de saídas.
+
+A grande diferença desta modelagem para a modelagem vista em \cite{optpon} são as restrições \ref{eq:rest1} e \ref{eq:rest2}, onde não consideramos mais a distância euclidiana, mas sim uma distância definida pela norma de Manhattan. Não é difícil de mostrar que a norma de Manhattan retorna valores maiores que a norma euclidiana. Desta forma, as soluções obtidas com esta modelagem são \textbf{iguais ou piores} que as obtidas sobre a modelagem de \cite{optpon}. Contudo, caracterizar o problema desta forma sugere duas principais mudanças:
+\begin{itemize}
+  \item O peso sobre o custo recai sobre a terceira parcela da função objetivo, isto é, sobre os custos de mão de obra e de fibras/cabos, que são bastante significativos para o CAPEX.
+  \item Os cabos passarão pelas ruas, e não por uma linha reta entre splitter e ONUs associadas. Desta forma, o modelo dá um CAPEX mais próximo da realidade.
+\end{itemize}
+
+Naturalmente, as restrições \ref{eq:rest1} e \ref{eq:rest2} e as variáveis $x_i^s, y_i^s$ tornam o modelo não linear e não totalmente inteiro, portanto estamos caracterizando um problema de \textit{Mixed Integer Linear Programming} (MILP). Como MILP contém os problemas ILP\footnote{\textit{Integer Linear Programming}}, MILP é uma classe de problemas NP-hard. Desta forma, uma solução ótima, seja usando algoritmos de \textit{Branch and Bound} ou outros métodos, tornam o problema intratável para uma entrada relativamente grande. Portanto, desenvolveremos uma heurística baseada no RARA, e apresentaremos as principais melhorias em relação a esse algoritmo.
+
+\subsection{Heurística}
+Nesta sessão, apresentaremos um algoritmo que dados os posicionamentos do \textit{central office} e das ONUs, retornará os posicionamentos dos splitters e suas respectivas associações com as ONUs, atendendo todas as restrições do problema de otimização. A solução obtida será uma solução subótima, mas boa na prática, reduzindo os custos em relação a uma heurística intuitiva de posicionamento dos splitters.
+
+A heurística contém três principais subrotinas:
+\begin{itemize}
+  \item Um \textit{loop} de $i = S_{{\rm min}} : S_{{\rm max}}$, onde $S_{{\rm min}}, S_{{\rm max}}$ são respectivamente a quantidade mínima e máxima de splitters. A cada iteração do \textit{loop}, serão gerados $N$ configurações de $i$ splitter no espaço de interesse $\Omega$. Esse espaço de interesse será determinado por um ``oráculo'', que dado um ponto $(x,y)$, ele responde se é verdade que $(x,y)\in \Omega$. O posicionamento de cada splitter $j$ em $\Omega$ será determinado por um vetor aleatório uniforme em $\Omega$.
+  \item Associação entre splitter e ONU. Dados conjuntos de splitters e ONUs, essa etapa realizará a conexão entre splitter e ONU, respeitando a restrição \ref{eq:rest3}. O algoritmo é guloso: a primeira associação feita é utilizando o par splitter-ONU cuja distância seja a mínima entre todos os pares em $S\times U$.
+  \item Relocalização dos splitter. Uma vez feitas as associações, iremos relocar cada splitter de tal modo a minimizar a soma das distâncias de cada ONU para o splitter.
+\end{itemize}
+
+\subsection{Pseudo-código}
+Apresentaremos aqui pseudo-códigos a respeito de nossa heurística.
+\begin{center}
+\begin{tabular}{|l|}
+\hline
+\textbf{Subrotina 1}\\
+\hline
+\texttt{Para $i = S_{\rm min} : S_{\rm max}$}\\
+\blank{1.0cm} \texttt{Para $j = 1:N$}\\
+\blank{2.0cm} \texttt{Aleatoriamente, selecione $i$ localizações de splitters em $\Omega$}\\
+\blank{2.0cm} \texttt{Se as localizações satisfazem as restrições}\\
+\blank{3.0cm} \texttt{$\tau \leftarrow$ Subrotina 2($S$, $U$, $\emptyset$)}\\
+\blank{3.0cm} \texttt{Se $\tau$: Para $\forall(i,j)\in\Pi$}\\
+\blank{4.0cm} \texttt{Subrotina 3($\{j; (i,j) \in \Pi\}$)}\\
+\texttt{retorne $\Theta$ contendo todas as soluções factíveis}\\
+\hline
+\end{tabular}
+\end{center}
+
+Para cada quantidade entre $S_{\rm min}$ e $S_{\rm max}$, geraremos $N$ configurações dos splitters no espaço de interesse $\Omega$. Isso deve diminuir a probabilidade de convergirmos para um mínimo local. $S_{\rm min} = \lceil |U|/n \rceil$, onde $n$ é a maior quantidade de saídas permitida para um splitter e $S_{\rm max} = |U|$, para o caso extremo em que cada splitter estará conectado a apenas uma ONU.
+
+\begin{center}
+  \begin{tabular}{|l|}
+    \hline
+    \textbf{Subrotina 2}\\
+    \hline
+    \textbf{Entrada}:\\
+    \blank{1.0cm} \texttt{Conjunto de splitters $S$}\\
+    \blank{1.0cm} \texttt{Conjunto de ONUs $U$}\\
+    \blank{1.0cm} \texttt{Conjunto $\Pi \subset S\times U$}\\
+    \hline
+    \texttt{Se $\forall j \in U,\;\exists i\in S$ tal que $(i,j)\in \Pi$}\\
+    \blank{1.0cm} \texttt{retorne verdadeiro}\\
+    \texttt{Encontre $(i,j)\in S \times U - \Pi$ tal que $d(i,j)$\footnote{distância entre o $i$-ésimo splitter e a $j$-ésima ONU.} é mínimo}\\
+    \texttt{Se $(i,j)$ não satisfaz as restrições do problema}\\
+    \blank{1.0cm} \texttt{retorne falso}\\
+    \texttt{Senão}\\
+    \blank{1.0cm} \texttt{Associe $i$ a $j$}\\
+    \blank{1.0cm} \texttt{Se todas as portas do $i$-ésimo splitter foram usadas}\\
+    \blank{2.0cm} $S \leftarrow S - \{i\}$\\
+    \blank{1.0cm} \texttt{retorne Subrotina 2($S$, $U - \{j\}$, $\Pi \cup \{(i,j)\}$)}\\
+    \hline
+  \end{tabular}
+\end{center}
+
+Este algoritmo recursivo sempre verifica o par splitter/ONU que tem a menor distância. Caso o par satisfaça as restrições do problema, o conjunto dos pares em $S\times U$ é atualizado e a rotina é chamada novamente. Se o algoritmo retorna ``verdadeiro'', podem haver elementos em $S$ não utilizados em $\Pi$. Portanto, esses splitters serão descartados, diminuindo o custo da solução.
+
+Por último, apresentaremos a terceira subrotina, que reloca um splitter de modo a minimizar a soma das distâncias às ONUs conectadas. Relembrando que a distância aqui definida é uma norma de Manhattan. Portanto, devemos minimizar uma função do tipo:
+$$
+f(x,y) = \sum_{i = 1}^{|U|} (|x-x_i| + |y-y_i|)
+$$
+Não é difícil mostrar que $f(x,y)$ é uma função convexa, vide \cite{nonlinear}. Uma importante implicação disso, é que um mínimo local é necessariamente um mínimo global. Como inicialmente não existem restrições para $x$ e $y$, o problema se trata de uma otimização irrestrita. Os principais algoritmos para essa classe de problemas de otimização são:
+\begin{itemize}
+  \item Algoritmo do Gradiente.
+  \item Algoritmo do Gradiente Conjulgado.
+  \item Algoritmos Quasi-Newton.
+\end{itemize}
+Note que, se $\nabla f(x,y)$ existe, então $\nabla f(x,y) = (\pm 1, \pm 1)$. Os pontos de falta de diferenciabilidade em $x$ são exatamente onde $x = x_i,\; i = 1,\cdots,|U|$ e para $y$, por analogia, onde $y = y_i,\; i = 1,\cdots,|U|$. Portanto, definimos $\frac{\partial f}{\partial x} = 0$ e $\frac{\partial f}{\partial y} = 0$ nesses casos. Usando portanto, o algoritmo do gradiente, teremos:
+\begin{center}
+\begin{tabular}{|l|}
+  \hline
+  \textbf{Subrotina 3}\\
+  \hline
+  \textbf{Entrada:}\\
+  \blank{1.0cm} \texttt{Conjunto $U$ de ONUs}\\
+  \blank{1.0cm} $x_0\in\mathbb{R}^2$\\
+  \hline
+  \texttt{Enquanto $d \neq (0,0)$ e $x_0$ satisfaz as restrições do problema}\\
+  \blank{1.0cm} \texttt{Calcule $d = -\nabla f(x_0)$} \\
+  \blank{1.0cm} \texttt{$\lambda \leftarrow {\rm min}_{\lambda}\;f(x_0 + \lambda \cdot d)$}\\
+  \blank{1.0cm} $x_0 \leftarrow x_0 + \lambda \cdot d$\\
+  \texttt{retorne $x_0$}\\
+  \hline
+\end{tabular}
+\end{center}
+
+\section{Definindo Trajeto}
+Para um orçamento realista dentro de um contexto urbano, precisamos considerar custos não uniformes e restrições cuja modelagem não abrangeu. Entre estes custos e restrições, precisamos considerar que OLTs com alcances diferentes possuem custos diferentes, cada saída de um splitter possui um custo dependendo do tipo do splitter, deve haver junção entre fibras, havendo atenuação nesta etapa, custos e atenuação de conectores etc. Tudo isso deverá ser considerado ao formularmos o orçamento de potência.
+\subsection{O Algoritmo}
+Para conectar as ONUs aos splitters através das ruas e avenidas, será utilizado um algoritmo baseado no algoritmo de Dijkstra, que possui complexidade (com o uso de um heap binário) de tempo de $O(|E| + |V|\log|V|)$, onde $|V|$ é o número de vértices e $|E|$ o número de arestas do grafo.
+	
+Neste caso o caminho não será necessariamente o mais curto e sim o com menor CAPEX, visto que nosso algoritmo em cada iteração leva em consideração os resultados obtidos anteriormente, ou seja, se no caminho estipulado para uma ONU $u_1$ passar por uma via $r$, para a solução da ONU $u_2$, os custos relativos a via $r$ serão menores, já que custos de conduíte por exemplo, não mais existirão, uma vez que o trajeto da fibra que liga o splitter a $u_1$ tem a rua $r$ como um trecho. Desta forma, o custos das arestas do grafo onde se deseja obter a árvore de peso mínimo, mudará dinamicamente, a cada iteração do algoritmo.
+
+Para atingir um melhor desempenho, um heap de mínimo com os custos para cada vértice é utilizado. 
+\subsection{Pseudo-código}	
+\begin{center}
+\begin{tabular}{|l|}
+\hline
+\textbf{Algoritmo de Trajeto entre splitter e ONU} \\
+\hline
+$\forall v \in V$:\\
+\blank{1.0cm}$custo[v] \leftarrow \infty$\\
+$custo[v_0] \leftarrow 0$\\
+\texttt{Faça um Heap com} $custo[V]$\\
+\texttt{Enquanto topo do Heap não for o} $v$ \texttt{destino faça}\\
+\blank{1.0cm} \texttt{Remova} $v$ \texttt{do Heap}\\
+\blank{1.0cm} \texttt{Para cada aresta $a$ de} $v$ \texttt{ligando a um vértice} $x$\\
+\blank{2.0cm} \texttt{Se} $custo[v] + a < custo[x]$ \\
+\blank{3.0cm} $custo[x] \leftarrow custo[v] + a$\\
+\blank{3.0cm} \texttt{Atualize o Heap}\\
+\blank{3.0cm} \texttt{Marque a aresta como utilizada na solução}\\
+\hline
+\end{tabular}
+\end{center}
+Caso a solução do algoritmo viole alguma restrição de distância entre OLT e ONU, devemos utilizar um \textit{Reach Extender} no splitter que causou a violação. Particularmente, se houver a necessidade de uso de um RE, recorreremos ao conjunto de soluções factíveis obtidas na heurística e realizar novamente o algoritmo para o trajeto nas vias no mesmo contexto urbano. Caso a resposta ao algoritmo não viole restrições de distância entre OLT e ONU, daremos preferência a essa solução.
+\section{Análise de Sensibilidade}
+Numa situação real, a demanda pode aumentar conforme o serviço vai ficando popular. Novos bairros podem entrar para a região que deseja abastecer com a FTTH, o número de assinantes pode crescer todos os dias e a infraestrutura deve suportar esse aumento de demanda. Desta forma, uma solução para o problema de otimização não pode ser rígida, mas flexível o suficiente para suprir o aparecimento de novos usuários. 
+
+No estudo de programação linear real, vide \cite{linear} e \cite{papad}, existe uma forte teoria de dualidade desenvolvida, onde é possível verificar quais restrições estão sendo de fato um gargalo para o aumento de uma demanda ou diminuição de um recurso. Contudo, esse não é o caso para problemas da classe MILP. Por outra maneira, podemos verificar se as restrições \ref{eq:rest3} e \ref{eq:rest7} são ativas, i.e., se são verificadas na igualdade.
+
+Se obtivermos uma solução factível de custo abaixo do máximo especificado e com \ref{eq:rest3} e \ref{eq:rest7} longe de serem ativas, podemos suportar um aumento significativo na demanda de usuários da rede PON. Esse mundo ideal nem sempre é satisfeito e devemos tratar o problema mesmo com uma implantação não robusta o suficiente. 
+
+Uma solução é a diferenciação de splitters em níveis diferentes. Os splitters de nível 1 se conectariam diretamente a OLTs e splitters de nível 2. Já os splitters de nível 2, se conectariam diretamente a splitters de nível 1 e a ONUs. Ao verificar uma dada região com uma demanda significativa, localizaremos os splitters mais próximos e definiremos que eles passarão a ser splitters de nível 2 e surgirá pelo menos um splitter de nível 1. Nessa etapa, precisamos rodar apenas a \textbf{Subrotina 3}, minimizando a soma das distâncias entre o splitter de nível 1 e os splitters de nível 2. Caso a restrição de distância máxima seja violada, adicionaremos ao splitter de nível 1 um RE.
+
+No planejamento da implantação da rede de acesso PON na zona norte do Recife, será dada uma análise de sensibilidade mais aprofundada, simulando o crescimento de usuários a uma certa taxa $\lambda$.
+\section{Análise de OPEX}
+Durante o planejamento da rede PON, desenvolveremos uma estratégia para valorar os custos OPEX não deterministicamente, mas em um modelo probabilístico. Cada equipamento, seja ele eletrônico ou não, possui um \textit{Mean Time to Fail} (MTTF) e seu tempo de vida pode, em grande parte dos casos, ser modelado como uma variável aleatória exponencial, com $\alpha = \frac{1}{\rm MTTF}$. A manutenção de equipamentos e a compra de novos, naturalmente fazem parte do OPEX.
+
+Também fazem parte do OPEX os custos fixos, como os custos do aluguel de postes, impostos sobre o serviço, custos de energia, despesas indiretas etc. Quase todos esses custos podem ser extraídos diretamente da topologia da rede de acesso. Durante a nossa implementação, buscaremos estabelecer os custos determinísticos e probabilísticos de modo a estimar um intervalo de confiança $[a,b]$ onde a probabilidade do OPEX mensal estar nele, é de $1-\alpha$. O parâmetro $\alpha$ deverá ser determinado previamente.
+\nocite{pon, optpon, optpon2}
+\bibliographystyle{sbc}
+\bibliography{sbc-template}
+
+\end{document}

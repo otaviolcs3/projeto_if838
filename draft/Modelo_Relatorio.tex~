@@ -1,0 +1,197 @@
+\documentclass[12pt]{article}
+
+\usepackage{sbc-template}
+
+\usepackage{graphicx,url}
+\usepackage{multirow}
+%\usepackage[brazil]{babel}   
+%\usepackage[latin1]{inputenc}
+\usepackage{color}
+
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}  
+
+\usepackage{subfigure}
+     
+\sloppy
+
+
+\title{Título}
+
+
+\author{Raisa O. C. Hirafuji\inst{1}, Divanilson R. Campelo\inst{2}}
+
+
+\address{Departamento de Engenharia Elétrica - Universidade de Brasília (UnB)\\
+  Caixa Postal 4386 -- 70910-900 -- Brasília -- DF -- Brasil
+\nextinstitute
+  Centro de Informática (CIn), Universidade Federal de Pernambuco (UFPE)\\
+  Caixa Postal 7851 -- 50732-970 -- Recife -- PE -- Brasil
+  \email{raisaohana@ieee.org, dcampelo@cin.ufpe.br}
+}
+
+\begin{document} 
+
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+     
+\begin{resumo} 
+
+\end{resumo}
+
+
+\section{Introdução} \label{sec:introducao}
+
+
+
+\section{Título} \label{sec:sleepEdoze}
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale = 0.7]{timming_SBRCv3}
+\caption{Detalhamento da fase de economia de energia para os modos \textit{Cyclic Sleep} e \textit{Doze}.}
+\label{fig:timming_SBRC}
+\end{figure}
+
+
+
+\begin{figure}[ht]
+\centerline{\subfigure[Máquina de estados da ONU]{\includegraphics[width=.48\linewidth]{maquina_ONU-original}
+ \label{fig:FSM1-ONU}}\hfill
+ \subfigure[Máquina de estados da OLT]{\includegraphics[width=.5\linewidth]{maquina_OLT-original}
+ \label{fig:FSM1-OLT}} \hfill
+} \hfill
+\caption{Máquinas de estados para os modos \textit{cyclic sleep} e \textit{doze}.}\label{fig:FSM1}
+\end{figure}
+
+
+
+
+\section{Modo \textit{Watchful Sleep}}\label{sec:unified}
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale = 0.7]{timming_SBRC-unified3}
+\caption{Detalhamento da fase de economia de energia para o modo \textit{watchful sleep}.}
+\label{fig:timming_SBRC-unified}
+\end{figure}
+
+
+\begin{figure}[ht]
+\centerline{\subfigure[Máquina de estados da ONU]{\includegraphics{maquina_ONU-unifiedv3}
+ \label{fig:FSM2-ONU}}\hfill
+ \subfigure[Máquina de estados da OLT]{\includegraphics{maquina_OLT-unifiedv3}
+ \label{fig:FSM2-OLT}} \hfill
+} \hfill
+\caption{Máquinas de estados para o modo \textit{Watchful Sleep}.}\label{fig:FSM2}
+\end{figure}
+
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics{lowpwr_state2-PT}
+\caption{Detalhamento da semântica interna do novo estado \textit{Low Power}.}
+\label{fig:lowpwr_state}
+\end{figure}
+
+
+\section{Metodologia}\label{sec:metodologia}
+
+ 
+ \begin{table}[ht]
+ \centering
+ \caption{Critérios de ativação dos indicadores locais.}
+\label{tab:indicadores}
+\footnotesize
+ \begin{tabular}{|c||p{5.25 cm}|p{5.25 cm}|}
+\hline  
+ \multirow{2}{*}{Indicador} & \multicolumn{2}{c|}{Critério de ativação} \\ 
+ \cline{2-3} 
+  & Caso 1 & Caso 2 \\ 
+ \hline 
+ \hline
+ LWI e OLT-LWI & Imediatamente à chegada de um pacote & Após um intervalo de 10 ms a partir chegada de um pacote \\ 
+ \hline 
+ LDI e LSI & Assim que a fila da ONU se esvazia & Assim que a fila da ONU se esvazia \\ 
+ \hline 
+ !OLT-LWI & Assim que a fila da OLT se esvazia & Assim que a fila da OLT se esvazia \\ 
+ \hline 
+ \end{tabular} 
+ \end{table}
+
+\section{Resultados}\label{sec:resultados}
+
+
+
+
+\begin{table}[ht]
+\small
+\caption{Parâmetros utilizados na simulação dos casos 1 e 2}
+\label{tab:parametros}
+\centering
+\begin{tabular}{|c||c|c|c|}
+\hline
+{Parâmetro} & Modo \textit{Watchful Sleep} & Modo \textit{Doze} & Modo \textit{Cyclic Sleep} \\
+\hline
+\hline
+$T_{\mathrm{sleep}}$ & 10 ms & 10 s & 10 ms\\
+\hline
+$T_{\mathrm{lowpower}}$ & 10 s & -- & -- \\
+\hline
+$T_{\mathrm{aware}}$ & 5 ms & 5 ms & 5 ms\\
+\hline
+\hline
+$P_{\mathrm{Aware}}$ & 100\%& 100\% & 100\% \\
+\hline
+$P_{\mathrm{Listen}}$ & 40\% & 40\% & -- \\
+\hline
+$P_{\mathrm{Sleep}}$ & 5\% & -- & 5\%\\
+\hline
+\hline
+$T_{\mathrm{Txinit}}$ & 3 ms & 3 ms& -- \\
+\hline
+$T_{\mathrm{Rxinit}}$& 2 ms & -- & --\\
+\hline
+$T_{\mathrm{Transinit}}$ & 3 ms & -- & 3 ms \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{figure}[ht]
+\centerline{\subfigure[Energia Economizada]{\includegraphics[width=.3\linewidth]{Caso01_Economia2}
+ \label{fig:Caso01_Economia}}\hfill
+ \subfigure[Atraso fim-a-fim médio \textit{downstream}]{\includegraphics[width=.3\linewidth]{Caso01_AtrasoDS2}
+ \label{fig:Caso01_AtrasoDS}} \hfill
+ \subfigure[Atraso fim-a-fim médio \textit{upstream}]{\includegraphics[width=.3\linewidth]{Caso01_AtrasoUS2}
+ \label{fig:Caso01_AtrasoUS}} \hfill
+} \hfill
+\caption{Energia economizada, atraso fim-a-fim médio nos sentidos  \textit{downstream} e \textit{upstream} pela carga na rede para o caso 01.} \label{fig:Caso01}
+\end{figure}
+
+\begin{figure}[ht]
+\centerline{\subfigure[Energia Economizada]{\includegraphics[width=.3\linewidth]{Caso02_Economia2}
+ \label{fig:Caso02_Economia}}\hfill
+ \subfigure[Atraso fim-a-fim médio \textit{downstream}]{\includegraphics[width=.3\linewidth]{Caso02_AtrasoDS2}
+ \label{fig:Caso02_AtrasoDS}} \hfill
+ \subfigure[Atraso fim-a-fim médio \textit{upstream}]{\includegraphics[width=.3\linewidth]{Caso02_AtrasoUS2}
+ \label{fig:Caso02_AtrasoUS}} \hfill
+} \hfill
+\caption{Energia economizada, atraso fim-a-fim médio nos sentidos  \textit{downstream} e \textit{upstream} pela carga na rede para o caso 02.} \label{fig:Caso02}
+\end{figure}
+
+
+\section{Conclusões}\label{sec:conclusoes}
+
+
+\bibliographystyle{sbc}
+\bibliography{sbc-template}
+
+\end{document}
+

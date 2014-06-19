@@ -1,0 +1,11 @@
+\select@language {brazil}
+\contentsline {section}{\numberline {1}Rede \IeC {\'o}ptica passiva - PON}{1}
+\contentsline {section}{\numberline {2}Descri\IeC {\c c}\IeC {\~a}o do Problema}{2}
+\contentsline {subsection}{\numberline {2.1}Modelagem do Problema}{3}
+\contentsline {subsection}{\numberline {2.2}Heur\IeC {\'\i }stica}{5}
+\contentsline {subsection}{\numberline {2.3}Pseudo-c\IeC {\'o}digo}{5}
+\contentsline {section}{\numberline {3}Definindo Trajeto}{7}
+\contentsline {subsection}{\numberline {3.1}O Algoritmo}{7}
+\contentsline {subsection}{\numberline {3.2}Pseudo-c\IeC {\'o}digo}{8}
+\contentsline {section}{\numberline {4}An\IeC {\'a}lise de Sensibilidade}{8}
+\contentsline {section}{\numberline {5}An\IeC {\'a}lise do OPEX}{8}

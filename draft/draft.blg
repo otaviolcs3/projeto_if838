@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: draft.aux
+The style file: sbc.bst
+Database file #1: sbc-template.bib
+Warning--empty journal in optpon2
+Warning--empty journal in optpon
+You've used 6 entries,
+            1935 wiz_defined-function locations,
+            501 strings with 4174 characters,
+and the built_in function-call counts, 1882 in all, are:
+= -- 176
+> -- 72
+< -- 6
++ -- 22
+- -- 22
+* -- 142
+:= -- 345
+add.period$ -- 16
+call.type$ -- 6
+change.case$ -- 41
+chr.to.int$ -- 6
+cite$ -- 8
+duplicate$ -- 82
+empty$ -- 133
+format.name$ -- 38
+if$ -- 363
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 10
+newline$ -- 31
+num.names$ -- 18
+pop$ -- 47
+preamble$ -- 1
+purify$ -- 41
+quote$ -- 0
+skip$ -- 63
+stack$ -- 0
+substring$ -- 72
+swap$ -- 4
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 28
+warning$ -- 2
+while$ -- 12
+width$ -- 0
+write$ -- 74
+(There were 2 warnings)
