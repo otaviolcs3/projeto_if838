@@ -1,17 +1,9 @@
-#include <iostream>
-
-int func1() 
+void foo()
 {
-	return 1;
+	cout << "alguma coisa";
 }
 
-void func3()
+void bar()
 {
+	cout << "outra coisa";
 }
-
-int main()
-{
-	cout << "Hello World" << endl;
-	return 0;
-}
-
