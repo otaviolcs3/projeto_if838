@@ -7,3 +7,5 @@ void bar() {
 }
 
 int func2() { return 2; }
+
+int func1() { return 1; }
