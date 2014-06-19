@@ -1,4 +1,9 @@
-int func1()
-{
-	return 1;
+#include <iostream>
+
+void foo() {
+	cout << "alguma coisa";
+}
+
+void bar() {
+	cout << "outra coisa";
 }
