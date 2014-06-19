@@ -5,3 +5,5 @@ void foo() {
 void bar() {
 	cout << "outra coisa";
 }
+
+int func2() { return 2; }
