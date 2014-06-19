@@ -5,7 +5,7 @@ int func1()
 	return 1;
 }
 
-int func2()
+void func3()
 {
 }
 
