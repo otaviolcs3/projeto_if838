@@ -7,7 +7,7 @@
 
 using namespace std;
 
-template<class orderedClass>  bool binarySearch(vector<orderedClass>& array, orderedClass& value, unsigned begin, unsigned end);
+//template<class orderedClass>  bool binarySearch(vector<orderedClass>& array, orderedClass& value, unsigned begin, unsigned end);
 
 typedef pair<double, double> Point;
 typedef double (*Dist)(const Point&, const Point&);

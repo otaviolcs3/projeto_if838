@@ -5,12 +5,10 @@
 
 using namespace std;
 
-template<class orderedClass>
+/*template<class orderedClass>
 bool binarySearch(vector<orderedClass>& array, orderedClass& value, unsigned begin, unsigned end)
 {
-	/**
-	função ainda não testada!
-	*/
+
 	if(begin < end)
 	{
 		unsigned middle = (begin + end) / 2;
@@ -24,7 +22,7 @@ bool binarySearch(vector<orderedClass>& array, orderedClass& value, unsigned beg
 	}
 	else
 		return false;
-}
+}*/
 
 PONInstance::PONInstance()
 {
@@ -43,7 +41,7 @@ void PONInstance::pushONU(const Point& onu)
 
 bool PONInstance::pushSplitterType(unsigned type)
 {
-	if(!binarySearch(splitterTypes, type, 0, splitterTypes.size()))
+	if(!binary_search(splitterTypes.begin(), splitterTypes.end(), type))
 	{
 		splitterTypes.push_back(type);
 		sort(splitterTypes.begin(), splitterTypes.end());
