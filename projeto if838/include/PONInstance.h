@@ -17,6 +17,9 @@ class PONInstance
 		PONInstance();
 		virtual ~PONInstance();
 
+		bool isInfeasible();
+		bool relaxedIsInfeasible();
+
 		void pushONU(pair<float, float>*);
 		void pushSplitterType(unsigned);
 
