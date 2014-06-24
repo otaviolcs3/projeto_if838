@@ -4,12 +4,13 @@
 #include <iostream>
 #include <vector>
 #include <utility>
-#include <algorithm>
-#include <assert>
 
 using namespace std;
 
 template<class orderedClass>  bool binarySearch(vector<orderedClass>& array, orderedClass& value, unsigned begin, unsigned end);
+
+typedef pair<double, double> Point;
+typedef double (*Dist)(const Point&, const Point&);
 
 class PONInstance
 {
@@ -17,32 +18,33 @@ class PONInstance
 		PONInstance();
 		virtual ~PONInstance();
 
-		bool isInfeasible();
-		bool relaxedIsInfeasible();
+		bool isFeasible();
+		bool isRelaxedFeasible();
 
-		void pushONU(pair<float, float>*);
+		void pushONU(const Point&);
 		void pushSplitterType(unsigned);
 
-		void setCostPerONU(float);
-		void setCostPerSplitterOut(float);
-		void setCostFiberCable(float);
-		void setCostDeployment(float);
-		void setMaximalDistance(float);
+		void setCostPerONU(double);
+		void setCostPerSplitterOut(double);
+		void setCostFiberCable(double);
+		void setCostDeployment(double);
+		void setMaximalDistance(double);
 
-		/*pair<float, float>& getCentralOfficeCoords();
-		pair<float, float>& getONUCoords(int index);
+		/*Point& getCentralOfficeCoords();
+		Point& getONUCoords(int index);
 		unsigned getSplitterType(int index);*/
 
 	protected:
+		bool isFeasible(Dist dist);
 
 	private:
-		pair<float, float> centralOfficeCoords;
-		vector<pair<float float> > ONUsCoords;       //coordenadas do central office
+		Point centralOfficeCoords;
+		vector<Point> ONUsCoords;       //coordenadas do central office
 		vector<unsigned> splitterTypes;
-		float costPerONU, costPerSplitterOut;
-		float costFiberCable, costDeployment;
-		//float largeValue;
-		float maximalDistance;
+		double costPerONU, costPerSplitterOut;
+		double costFiberCable, costDeployment;
+		//double largeValue;
+		double maximalDistance;
 };
 
 #endif // PONINSTANCE_H

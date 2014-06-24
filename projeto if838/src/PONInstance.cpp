@@ -1,4 +1,7 @@
 #include "PONInstance.h"
+#include <algorithm>
+#include <cassert>
+#include <cmath>
 
 using namespace std;
 
@@ -33,9 +36,9 @@ PONInstance::~PONInstance()
 	//dtor
 }
 
-void PONInstance::pushONU(pair<float, float>* onu)
+void PONInstance::pushONU(const Point& onu)
 {
-	ONUsCoords.push_back(*onu);
+	ONUsCoords.push_back(onu);
 }
 
 bool PONInstance::pushSplitterType(unsigned type)
@@ -50,28 +53,58 @@ bool PONInstance::pushSplitterType(unsigned type)
 		return false;
 }
 
-void PONInstance::setCostPerONU(float cost)
+void PONInstance::setCostPerONU(double cost)
 {
 	costPerONU = cost;
 }
 
-void PONInstance::setCostPerSplitterOut(float cost)
+void PONInstance::setCostPerSplitterOut(double cost)
 {
 	costPerSplitterOut = cost;
 }
 
-void PONInstance::setCostFiberCable(float cost)
+void PONInstance::setCostFiberCable(double cost)
 {
 	costFiberCable = cost;
 }
 
-void PONInstance::setCostDeployment(float cost)
+void PONInstance::setCostDeployment(double cost)
 {
 	costDeployment = cost;
 }
 
-void PONInstance::setMaximalDistance(float distance)
+void PONInstance::setMaximalDistance(double distance)
 {
 	maximalDistance = distance;
 }
 
+double absDistance(const Point& p1, const Point& p2)
+{
+	return abs(p1.first - p2.first) + abs(p1.second - p2.second);
+}
+
+double euclidianDistance(const Point& p1, const Point& p2)
+{
+	double x = p1.first - p2.first, y = p1.second - p2.second;
+	return sqrt(x * x + y * y);
+}
+
+bool PONInstance::isFeasible(Dist dist)
+{
+	bool flag = true;
+
+	for(unsigned i = 0, size = ONUsCoords.size(); i < size && flag; i++)
+		if(dist(ONUsCoords[i], centralOfficeCoords) > maximalDistance) flag = false;
+
+	return flag;
+}
+
+bool PONInstance::isFeasible()
+{
+	return PONInstance::isFeasible(absDistance);
+}
+
+bool PONInstance::isRelaxedFeasible()
+{
+	return PONInstance::isFeasible(euclidianDistance);
+}
