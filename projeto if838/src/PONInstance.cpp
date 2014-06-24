@@ -108,3 +108,21 @@ bool PONInstance::isRelaxedFeasible()
 {
 	return PONInstance::isFeasible(euclidianDistance);
 }
+
+const Point& PONInstance::getCentralOfficeCoords()
+{
+	return centralOfficeCoords;
+}
+
+const Point& PONInstance::getONUCoords(unsigned index)
+{
+	return ONUsCoords[index];
+}
+
+unsigned PONInstance::getSplitterType(unsigned index)
+{
+	return splitterTypes[index];
+}
+
+
+

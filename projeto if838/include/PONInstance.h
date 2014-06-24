@@ -30,9 +30,9 @@ class PONInstance
 		void setCostDeployment(double);
 		void setMaximalDistance(double);
 
-		/*Point& getCentralOfficeCoords();
-		Point& getONUCoords(int index);
-		unsigned getSplitterType(int index);*/
+		const Point& getCentralOfficeCoords();
+		const Point& getONUCoords(unsigned);
+		unsigned getSplitterType(unsigned);
 
 	protected:
 		bool isFeasible(Dist dist);
