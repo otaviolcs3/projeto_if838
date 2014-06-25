@@ -44,7 +44,7 @@ class PONInstance
 		double costPerONU, costPerSplitterOut;
 		double costFiberCable, costDeployment;
 		//double largeValue;
-		double maximalDistance;
+		double maximalDistance, minimalDistance/*, maxDiffDistance*/;
 };
 
 #endif // PONINSTANCE_H

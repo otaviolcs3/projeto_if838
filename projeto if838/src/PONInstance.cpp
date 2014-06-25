@@ -92,7 +92,10 @@ bool PONInstance::isFeasible(Dist dist)
 	bool flag = true;
 
 	for(unsigned i = 0, size = ONUsCoords.size(); i < size && flag; i++)
-		if(dist(ONUsCoords[i], centralOfficeCoords) > maximalDistance) flag = false;
+	{
+        flag = dist(ONUsCoords[i], centralOfficeCoords) <= maximalDistance;
+        flag &&= dist(ONUsCoords[i], centralOfficeCoords) >= minimalDistance;
+	}
 
 	return flag;
 }
