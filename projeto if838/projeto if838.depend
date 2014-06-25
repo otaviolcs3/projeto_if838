@@ -1,16 +1,16 @@
 # depslib dependency file v1.0
-1403720664 source:c:\users\mfrr\projeto_if838\projeto if838\src\optimizationproblem.cpp
+1403722051 source:c:\users\mfrr\projeto_if838\projeto if838\src\optimizationproblem.cpp
 	"../include/OptimizationProblem.h"
 
-1403720631 c:\users\mfrr\projeto_if838\projeto if838\include\optimizationproblem.h
+1403722035 c:\users\mfrr\projeto_if838\projeto if838\include\optimizationproblem.h
 	"PONInstance.h"
 
-1403715710 c:\users\mfrr\projeto_if838\projeto if838\include\poninstance.h
+1403723446 c:\users\mfrr\projeto_if838\projeto if838\include\poninstance.h
 	<iostream>
 	<vector>
 	"MyPair.h"
 
-1403720147 c:\users\mfrr\projeto_if838\projeto if838\include\mypair.h
+1403723137 c:\users\mfrr\projeto_if838\projeto if838\include\mypair.h
 	<utility>
 	<iostream>
 
@@ -20,10 +20,26 @@
 	<cassert>
 	<cmath>
 
-1403720241 source:c:\users\mfrr\projeto_if838\projeto if838\src\main.cpp
+1403724878 source:c:\users\mfrr\projeto_if838\projeto if838\src\main.cpp
 	<iostream>
 	"../include/MyPair.h"
+	"../include/Graph.h"
 
 1403720296 source:c:\users\mfrr\projeto_if838\projeto if838\src\mypair.cpp
 	"../include/MyPair.h"
+
+1403722894 source:c:\users\mfrr\projeto_if838\projeto if838\src\graph.cpp
+	"../include/Graph.h"
+
+1403724324 c:\users\mfrr\projeto_if838\projeto if838\include\graph.h
+	<vector>
+	"Vertex.h"
+
+1403724745 source:c:\users\mfrr\projeto_if838\projeto if838\src\vertex.cpp
+	"../include/Vertex.h"
+
+1403725076 c:\users\mfrr\projeto_if838\projeto if838\include\vertex.h
+	<vector>
+	"MyPair.h"
+	<utility>
 
