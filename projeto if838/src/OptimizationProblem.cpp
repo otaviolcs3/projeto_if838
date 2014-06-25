@@ -1,5 +1,8 @@
 #include "../include/OptimizationProblem.h"
 
+OptimizationProblem::StopCondition OptimizationProblem::stopCondition;
+OptimizationProblem::UnidimensionalMethod OptimizationProblem::unidimensionalMethod;
+
 OptimizationProblem::OptimizationProblem()
 {
     //ctor
@@ -10,28 +13,42 @@ OptimizationProblem::~OptimizationProblem()
     //dtor
 }
 
-class OptimizationUtils
+double OptimizationUtils::f1R(double lambda)
 {
-    public:
-        static Point& x0;
-        static Func2R f2R;
-        static Vector2 grad;
+    return f2R(x0 + lambda * grad);
+}
 
-        static double f1R(double lambda)
-        {
-            return f2R(x0 + lambda * grad);
-        }
-
-        static void setValues(const Point& _x0, Func2R _f2R, const Vector2& _grad)
-        {
-            x0 = _x0; f2R = _f2R; grad = _grad;
-        }
-};
-
-const Point& OptimizationProblem::gradientMethod(const Point& x0, Func2R f, Grad g)
+void OptimizationUtils::setValues(const Point& _x0, Func2R _f2R, const Vector2& _grad)
 {
+    x0 = _x0; f2R = _f2R; grad = _grad;
+}
+
+Point OptimizationUtils::x0;
+Func2R OptimizationUtils::f2R;
+Vector2 OptimizationUtils::grad;
+
+double OptimizationProblem::unidimensionalOptimization(double x0, Func1R f)
+{
+
+}
+
+double norm(const Vector2& v)
+{
+    double x = v.first, y = v.second;
+    return sqrt(x * x + y * y);
+}
+
+const Point& OptimizationProblem::gradientMethod(const Point& _x0, Func2R f, Grad g)
+{
+    Point x0 = _x0;
+    do
+    {
+        Vector2 grad = (-1) * g(x0);
+        OptimizationUtils::setValues(x0, f, grad);
+
+        double lambda = unidimensionalOptimization(0, OptimizationUtils::f1R);
+        x0 = x0 + lambda * grad;
+    }while(true);
 
     return *(new MyPair(0,0));
 }
-
-//C:\Users\mfrr\projeto_if838\projeto if838\src\OptimizationProblem.cpp|20|error: local class 'class OptimizationProblem::gradientMethod(const Point&, double (*)(const Point&, const Point&), const Point& (*)(double (*)(const Point&, const Point&), const Vector2&))::Temp' shall not have static data member 'Point& OptimizationProblem::gradientMethod(const Point&, double (*)(const Point&, const Point&), const Point& (*)(double (*)(const Point&, const Point&), const Vector2&))::Temp::x0'|

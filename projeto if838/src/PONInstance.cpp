@@ -1,7 +1,5 @@
 #include "../include/PONInstance.h"
-#include <algorithm>
-#include <cassert>
-#include <cmath>
+
 
 using namespace std;
 
