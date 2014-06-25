@@ -31,12 +31,16 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="include\Graph.h" />
 		<Unit filename="include\MyPair.h" />
 		<Unit filename="include\OptimizationProblem.h" />
 		<Unit filename="include\PONInstance.h" />
+		<Unit filename="include\Vertex.h" />
+		<Unit filename="src\Graph.cpp" />
 		<Unit filename="src\MyPair.cpp" />
 		<Unit filename="src\OptimizationProblem.cpp" />
 		<Unit filename="src\PONInstance.cpp" />
+		<Unit filename="src\Vertex.cpp" />
 		<Unit filename="src\main.cpp" />
 		<Extensions>
 			<code_completion />
