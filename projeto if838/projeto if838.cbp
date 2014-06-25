@@ -31,7 +31,11 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="include\MyPair.h" />
+		<Unit filename="include\OptimizationProblem.h" />
 		<Unit filename="include\PONInstance.h" />
+		<Unit filename="src\MyPair.cpp" />
+		<Unit filename="src\OptimizationProblem.cpp" />
 		<Unit filename="src\PONInstance.cpp" />
 		<Extensions>
 			<code_completion />
