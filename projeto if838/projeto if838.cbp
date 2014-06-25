@@ -37,6 +37,7 @@
 		<Unit filename="src\MyPair.cpp" />
 		<Unit filename="src\OptimizationProblem.cpp" />
 		<Unit filename="src\PONInstance.cpp" />
+		<Unit filename="src\main.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

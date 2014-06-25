@@ -26,7 +26,7 @@ class OptimizationUtils
         {
             x0 = _x0; f2R = _f2R; grad = _grad;
         }
-}
+};
 
 const Point& OptimizationProblem::gradientMethod(const Point& x0, Func2R f, Grad g)
 {

@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="include\PONInstance.h" open="1" top="0" tabpos="1">
-		<Cursor position="280" topLine="2" />
+	<File name="include\MyPair.h" open="1" top="0" tabpos="2">
+		<Cursor position="441" topLine="0" />
 	</File>
-	<File name="src\PONInstance.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="1471" topLine="36" />
+	<File name="include\OptimizationProblem.h" open="1" top="0" tabpos="4">
+		<Cursor position="130" topLine="0" />
+	</File>
+	<File name="include\PONInstance.h" open="1" top="0" tabpos="3">
+		<Cursor position="340" topLine="0" />
+	</File>
+	<File name="src\MyPair.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="433" topLine="0" />
+	</File>
+	<File name="src\OptimizationProblem.cpp" open="1" top="1" tabpos="5">
+		<Cursor position="662" topLine="2" />
+	</File>
+	<File name="src\PONInstance.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="2054" topLine="81" />
+	</File>
+	<File name="src\main.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="160" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

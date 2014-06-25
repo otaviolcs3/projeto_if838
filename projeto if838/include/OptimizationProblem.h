@@ -3,7 +3,7 @@
 
 #include "PONInstance.h"
 
-typedef Dist Func2R;         //função do R^2 -> R
+typedef double (*Func2R) (const Point&);         //função do R^2 -> R
 typedef double (*Func1R) (double); //R -> R
 typedef Point Vector2;
 typedef const Point& (*Grad)(Func2R, const Vector2&);
