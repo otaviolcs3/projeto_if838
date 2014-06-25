@@ -14,8 +14,8 @@ class OptimizationProblem
         OptimizationProblem();
         virtual ~OptimizationProblem();
 
-        enum UnidimensionalMethod = {};
-        enum StopCondition = {};
+        enum UnidimensionalMethod {a_123=0};
+        enum StopCondition {b_123=0};
 
         static double unidimensionalOptimization(double, Func1R);
         static const Point& gradientMethod(const Point&, Func2R, Grad);    //x0, f:R^2->R, grad

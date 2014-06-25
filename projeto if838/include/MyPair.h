@@ -2,14 +2,23 @@
 #define MYPAIR_H
 
 #include <utility>
+#include <iostream>
 
-class MyPair : public pair<double, double>
+
+class MyPair : public std::pair<double, double>
 {
     public:
         MyPair();
-        virtual ~MyPair();
-        const MyPair& operator+(const MyPair&);
-        const MyPair& operator*(double);
+        MyPair(double first,double second);
+        ~MyPair();
+        MyPair operator+(const MyPair&);
+        MyPair operator-(const MyPair&);
+        MyPair operator*(double);
+        MyPair operator/(double);
+
+    friend MyPair operator*(double ,const MyPair&);
+    friend std::ostream& operator<<(std::ostream& out, const MyPair& vec); // output
+
 };
 
 #endif // MYPAIR_H

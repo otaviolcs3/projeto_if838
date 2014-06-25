@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1403720664 source:c:\users\mfrr\projeto_if838\projeto if838\src\optimizationproblem.cpp
+	"../include/OptimizationProblem.h"
+
+1403720631 c:\users\mfrr\projeto_if838\projeto if838\include\optimizationproblem.h
+	"PONInstance.h"
+
+1403715710 c:\users\mfrr\projeto_if838\projeto if838\include\poninstance.h
+	<iostream>
+	<vector>
+	"MyPair.h"
+
+1403720147 c:\users\mfrr\projeto_if838\projeto if838\include\mypair.h
+	<utility>
+	<iostream>
+
+1403719045 source:c:\users\mfrr\projeto_if838\projeto if838\src\poninstance.cpp
+	"../include/PONInstance.h"
+	<algorithm>
+	<cassert>
+	<cmath>
+
+1403720241 source:c:\users\mfrr\projeto_if838\projeto if838\src\main.cpp
+	<iostream>
+	"../include/MyPair.h"
+
+1403720296 source:c:\users\mfrr\projeto_if838\projeto if838\src\mypair.cpp
+	"../include/MyPair.h"
+

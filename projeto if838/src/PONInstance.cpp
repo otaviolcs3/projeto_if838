@@ -90,11 +90,14 @@ double euclidianDistance(const Point& p1, const Point& p2)
 bool PONInstance::isFeasible(Dist dist)
 {
 	bool flag = true;
+	double distance_value;
 
-	for(unsigned i = 0, size = ONUsCoords.size(); i < size && flag; i++)
+	for(unsigned i = 0, size = ONUsCoords.size(); (i < size) && flag; i++)
 	{
-        flag = dist(ONUsCoords[i], centralOfficeCoords) <= maximalDistance;
-        flag &&= dist(ONUsCoords[i], centralOfficeCoords) >= minimalDistance;
+	    distance_value = dist(ONUsCoords[i], centralOfficeCoords);
+
+        flag = ( distance_value <= maximalDistance);
+        flag = flag && ( distance_value >= minimalDistance);
 	}
 
 	return flag;
