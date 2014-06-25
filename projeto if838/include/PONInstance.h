@@ -22,7 +22,7 @@ class PONInstance
 		bool isRelaxedFeasible();
 
 		void pushONU(const Point&);
-		void pushSplitterType(unsigned);
+		bool pushSplitterType(unsigned);
 
 		void setCostPerONU(double);
 		void setCostPerSplitterOut(double);
