@@ -16,7 +16,7 @@ class PONInstance
 {
 	public:
 		PONInstance();
-		virtual ~PONInstance();
+		~PONInstance();
 
 		bool isFeasible();
 		bool isRelaxedFeasible();

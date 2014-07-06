@@ -11,9 +11,8 @@ class Graph
     public:
         Graph();
         ~Graph();
-    protected:
-
     private:
+        vector<Vertex> vertices;
 };
 
 #endif // GRAPH_H

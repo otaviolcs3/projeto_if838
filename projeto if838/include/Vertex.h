@@ -2,25 +2,26 @@
 #define VERTEX_H
 
 #include <vector>
-#include "MyPair.h"
 #include <utility>
-
-typedef MyPair Point;
+#include "MyPair.h"
 
 using std::vector;
 using std::pair;
 
+typedef MyPair Point;
+
 class Vertex
 {
+    typedef pair<Vertex*,unsigned int> Edge;
+
     public:
         Vertex();
         ~Vertex();
         void connect(Vertex&,unsigned int);
+        const vector<Edge>& getEdges();
 
     private:
-        const vector<pair<Vertex*,unsigned int> >& getEdges();
-
-        vector<pair<Vertex*,unsigned int> > edges;
+        vector<Edge> edges;
         //Point coordinate;
 
 };

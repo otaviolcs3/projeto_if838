@@ -12,11 +12,11 @@ Vertex::~Vertex()
 
 void Vertex::connect(Vertex& vert, unsigned int distance)
 {
-    edges.push_back(pair<Vertex*,unsigned int>(&vert,distance));
-    vert.edges.push_back(pair<Vertex*,unsigned int>(this,distance));
+    edges.push_back(Vertex::Edge(&vert,distance));
+    vert.edges.push_back(Vertex::Edge(this,distance));
 }
 
-const vector<pair<Vertex*,unsigned int> >& Vertex::getEdges()
+const vector<Vertex::Edge>& Vertex::getEdges()
 {
     return edges;
 }
