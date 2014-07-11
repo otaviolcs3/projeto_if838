@@ -43,14 +43,16 @@
 	"MyPair.h"
 	<utility>
 
-1403734710 source:d:\aulas ufpe\redes de acesso\projeto_if838\projeto if838\src\graph.cpp
+1405105080 source:d:\aulas ufpe\redes de acesso\projeto_if838\projeto if838\src\graph.cpp
 	"../include/Graph.h"
 
-1403736471 d:\aulas ufpe\redes de acesso\projeto_if838\projeto if838\include\graph.h
+1405105824 d:\aulas ufpe\redes de acesso\projeto_if838\projeto if838\include\graph.h
 	<vector>
+	<queue>
+	<climits>
 	"Vertex.h"
 
-1403736391 d:\aulas ufpe\redes de acesso\projeto_if838\projeto if838\include\vertex.h
+1405101520 d:\aulas ufpe\redes de acesso\projeto_if838\projeto if838\include\vertex.h
 	<vector>
 	<utility>
 	"MyPair.h"
@@ -59,7 +61,7 @@
 	<utility>
 	<iostream>
 
-1403734710 source:d:\aulas ufpe\redes de acesso\projeto_if838\projeto if838\src\main.cpp
+1405105672 source:d:\aulas ufpe\redes de acesso\projeto_if838\projeto if838\src\main.cpp
 	<iostream>
 	"../include/MyPair.h"
 	"../include/Graph.h"
@@ -84,6 +86,6 @@
 	<cassert>
 	<cmath>
 
-1403735472 source:d:\aulas ufpe\redes de acesso\projeto_if838\projeto if838\src\vertex.cpp
+1405102030 source:d:\aulas ufpe\redes de acesso\projeto_if838\projeto if838\src\vertex.cpp
 	"../include/Vertex.h"
 

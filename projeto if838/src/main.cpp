@@ -4,22 +4,36 @@
 
 using namespace std;
 
-int* teste(int& a)
+class MyInt
 {
-    return &a;
-}
+    public:
+        vector<int> a;
+};
+
+class Teste
+{
+    public:
+        vector<MyInt> vetor;
+        void add(MyInt& inteiro)
+        {
+            vetor.push_back(inteiro);
+        }
+};
+
 
 
 int main(int argc, char** argv)
 {
-    MyPair um(1,1),a(2,4),c(1,2),d(4,10);
+    MyInt *variavel = new MyInt();
+    Teste teste ;
 
-    cout << (0.5*um*0.2 - a) << endl;
+    variavel->a.push_back(18000);
 
-    int a1 =10;
+    teste.add(*variavel);
 
-    cout<< &a1 << ' ' << teste(a1) << endl;
-    cout<< a1 << ' ' << *teste(a1) << endl;
+    variavel->a[0]=1450;
+
+    cout << teste.vetor[0].a[0] << endl;
 
 
     return 0;
