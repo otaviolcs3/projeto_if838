@@ -1,54 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="src\main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="456" topLine="6" />
-		</Cursor>
+	<File name="include\Graph.h" open="1" top="0" tabpos="5">
+		<Cursor position="158" topLine="1" />
 	</File>
-	<File name="include\PONInstance.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="345" topLine="4" />
-		</Cursor>
+	<File name="include\Heap_node.h" open="1" top="1" tabpos="7">
+		<Cursor position="389" topLine="0" />
 	</File>
-	<File name="include\Graph.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="440" topLine="8" />
-		</Cursor>
+	<File name="include\MyPair.h" open="1" top="0" tabpos="2">
+		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="include\Vertex.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="452" topLine="2" />
-		</Cursor>
+	<File name="include\OptimizationProblem.h" open="0" top="0" tabpos="4">
+		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="include\OptimizationProblem.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
+	<File name="include\PONInstance.h" open="0" top="0" tabpos="3">
+		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="src\PONInstance.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="637" topLine="0" />
-		</Cursor>
+	<File name="include\Vertex.h" open="1" top="0" tabpos="3">
+		<Cursor position="96" topLine="0" />
 	</File>
-	<File name="src\Vertex.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="803" topLine="30" />
-		</Cursor>
+	<File name="src\Graph.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="1417" topLine="57" />
 	</File>
-	<File name="src\Graph.cpp" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="555" topLine="29" />
-		</Cursor>
+	<File name="src\Heap_node.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="214" topLine="0" />
 	</File>
-	<File name="src\OptimizationProblem.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="270" topLine="0" />
-		</Cursor>
+	<File name="src\OptimizationProblem.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="include\MyPair.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
+	<File name="src\PONInstance.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="src\Vertex.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="1034" topLine="0" />
+	</File>
+	<File name="src\main.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="1325" topLine="30" />
 	</File>
 </CodeBlocks_layout_file>

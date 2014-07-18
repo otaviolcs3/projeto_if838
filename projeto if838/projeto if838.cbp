@@ -32,11 +32,13 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="include\Graph.h" />
+		<Unit filename="include\Heap_node.h" />
 		<Unit filename="include\MyPair.h" />
 		<Unit filename="include\OptimizationProblem.h" />
 		<Unit filename="include\PONInstance.h" />
 		<Unit filename="include\Vertex.h" />
 		<Unit filename="src\Graph.cpp" />
+		<Unit filename="src\Heap_node.cpp" />
 		<Unit filename="src\MyPair.cpp" />
 		<Unit filename="src\OptimizationProblem.cpp" />
 		<Unit filename="src\PONInstance.cpp" />

@@ -54,7 +54,7 @@ void Vertex::update_cost(Vertex& vert, Cost new_distance) // pode futuramente ad
     }
 }
 
-const vector<Vertex::Edge>& Vertex::getEdges()
+const vector<Vertex::Edge>& Vertex::get_edges()
 {
     return edges;
 }

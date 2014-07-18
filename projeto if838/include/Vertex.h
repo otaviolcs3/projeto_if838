@@ -16,11 +16,12 @@ class Vertex
     typedef pair<Vertex*,Cost> Edge;
 
     public:
+        Vertex(Point);
         Vertex();
-        ~Vertex();
+        virtual ~Vertex();
         void connect(Vertex&,Cost);
         void update_cost(Vertex&,Cost);
-        const vector<Edge>& getEdges();
+        const vector<Edge>& get_edges();
         bool operator==(Vertex&);
 
     private:

@@ -2,13 +2,22 @@
 #define GRAPH_H
 
 #include <vector>
-#include <queue>
+#include <algorithm>
+//#include <queue>
+#include <iterator>
+#include <utility>
 #include <climits>
+
 #include "Vertex.h"
+#include "Heap_node.h"
 
 using std::vector;
 using std::pair;
-using std::priority_queue;
+//using std::priority_queue;
+using std::make_heap;
+using std::pop_heap;
+using std::swap;
+using std::random_access_iterator_tag;
 
 class Graph
 {
@@ -17,22 +26,17 @@ class Graph
         ~Graph();
         Graph minimal_edges_between(Vertex&,Vertex&);
         void add_vertex(Vertex&);
-        const vector<Vertex> get_vertices();
+        const vector<Vertex>& get_vertices();
 
     private:
         vector<Vertex> vertices;
 };
 
-class MyHeap_comparison
-{
-    private:
-        bool not_reverse;
-    public:
-        MyHeap_comparison(bool reverse);
-        MyHeap_comparison();
-        bool operator()(pair<Vertex*,Cost> left, pair<Vertex*,Cost> right);
-};
+template <bool min>
+bool MyHeap_comparison(pair<Vertex*,Cost>& left, pair<Vertex*,Cost>& right);
+void up_heap(vector<pair<Vertex*,Cost> >& vec,unsigned int posicao);
 
-typedef priority_queue<pair<Vertex*,Cost>,vector<pair<Vertex*,Cost> >,MyHeap_comparison> MyHeap;
+
+//typedef priority_queue<pair<Vertex*,Cost>,vector<pair<Vertex*,Cost> >,MyHeap_comparison> MyHeap;
 
 #endif // GRAPH_H
