@@ -17,14 +17,13 @@ using std::pair;
 using std::make_heap;
 using std::pop_heap;
 using std::swap;
-using std::random_access_iterator_tag;
 
 class Graph
 {
     public:
         Graph();
         ~Graph();
-        Graph minimal_edges_between(Vertex&,Vertex&);
+        Heap_node minimal_edges_between(Vertex&,Vertex&);
         void add_vertex(Vertex&);
         const vector<Vertex>& get_vertices();
 
@@ -32,9 +31,9 @@ class Graph
         vector<Vertex> vertices;
 };
 
-template <bool min>
-bool MyHeap_comparison(pair<Vertex*,Cost>& left, pair<Vertex*,Cost>& right);
-void up_heap(vector<pair<Vertex*,Cost> >& vec,unsigned int posicao);
+bool MyHeap_comparison(Heap_node& left, Heap_node& right);
+void up_heap(vector<Heap_node>& vec,unsigned int posicao);
+bool in_heap(vector<Heap_node>& vec, Vertex* is_in,unsigned int& pos);
 
 
 //typedef priority_queue<pair<Vertex*,Cost>,vector<pair<Vertex*,Cost> >,MyHeap_comparison> MyHeap;

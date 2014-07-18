@@ -8,7 +8,6 @@ Heap_node::Heap_node(Vertex* vertex,Cost cost)
 
 Heap_node::Heap_node()
 {
-    this->vertex=NULL;
     this->cost=0;
 }
 
@@ -16,7 +15,6 @@ Heap_node::~Heap_node()
 {
     //dtor
 }
-
 
 Heap_node& Heap_node::operator=(const Heap_node& heap)
 {

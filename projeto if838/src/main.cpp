@@ -45,7 +45,7 @@ bool comp(pair<int,int>&left,pair<int,int>&right)
 
 int main(int argc, char** argv)
 {
-    vector<pair<int,int>> my_vector;
+    vector<pair<int,int> > my_vector;
     my_vector.push_back(pair<int,int>(0,0));
     my_vector.push_back(pair<int,int>(1,1));
     my_vector.push_back(pair<int,int>(2,2));

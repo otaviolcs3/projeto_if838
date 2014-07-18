@@ -4,7 +4,7 @@ template <bool min>
 bool MyHeap_comparison(Heap_node& left, Heap_node& right)
 {
     bool comparison= (left.cost > right.cost); // (<) vira heap de maximo
-                                                   // (>) vira heap de minimo
+                                               // (>) vira heap de minimo
 
     if(min) return comparison;
     else return (!comparison);
@@ -59,7 +59,7 @@ const vector<Vertex>& Graph::get_vertices()
     return vertices;
 }
 
-Graph Graph::minimal_edges_between(Vertex& origin,Vertex& destiny) // pode futuramente adicionar exceção de não encotrar o vertice
+Heap_node Graph::minimal_edges_between(Vertex& origin,Vertex& destiny) // pode futuramente adicionar exceção de não encotrar o vertice
 {
     vector<Heap_node> the_heap;
     unsigned int size_ = vertices.size();
@@ -76,7 +76,7 @@ Graph Graph::minimal_edges_between(Vertex& origin,Vertex& destiny) // pode futur
 
     while((atual = the_heap[0]).vertex!= &destiny)
     {
-        pop_heap(the_heap.begin(),the_heap.end());
+        pop_heap(the_heap.begin(),the_heap.end(),MyHeap_comparison<true>);
         the_heap.pop_back();
 
         unsigned int pos;
@@ -90,13 +90,15 @@ Graph Graph::minimal_edges_between(Vertex& origin,Vertex& destiny) // pode futur
                 if(atual.cost+atual.vertex->get_edges()[i].second < the_heap[pos].cost)
                 {
                     the_heap[pos].cost = atual.cost+atual.vertex->get_edges()[i].second;
+                    the_heap[pos].solution= atual.solution;
+                    the_heap[pos].solution.push_back(pair<Vertex*,Cost>(atual.vertex->get_edges()[i].first,atual.vertex->get_edges()[i].second));
                     up_heap(the_heap,pos);
                 }
             }
         }
     }
 
-
+    return atual;
 }
 
 

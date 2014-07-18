@@ -29,7 +29,7 @@ void Vertex::update_cost(Vertex& vert, Cost new_distance) // pode futuramente ad
     unsigned int size_ = edges.size();
     Vertex *opposite = NULL;
 
-    for(int i;i<size_;i++)
+    for(unsigned int i = 0;i<size_;i++)
     {
         if(edges[i].first == &vert)
         {
@@ -43,7 +43,7 @@ void Vertex::update_cost(Vertex& vert, Cost new_distance) // pode futuramente ad
     {
         size_ = opposite->edges.size();
 
-        for(int i;i<size_;i++)
+        for(unsigned int i = 0;i<size_;i++)
         {
             if(opposite->edges[i].first== this)
             {
