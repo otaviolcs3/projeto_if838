@@ -54,7 +54,7 @@ void Graph::add_vertex(Vertex& vert)
     vertices.push_back(vert);
 }
 
-const vector<Vertex>& Graph::get_vertices()
+vector<Vertex>& Graph::get_vertices()
 {
     return vertices;
 }
@@ -68,16 +68,22 @@ Heap_node Graph::minimal_edges_between(Vertex& origin,Vertex& destiny) // pode f
 
     for(unsigned int i=0;i<size_;i++)
     {
+        std::cout << "Puxei:" <<vertices[i].get_coordinate() << " tem tantos arestas:" << vertices[i].get_edges().size() << std::endl;
+
         if(&vertices[i] != &origin) the_heap.push_back(Heap_node(&vertices[i],UINT_MAX));
         else the_heap.push_back(Heap_node(&vertices[i],0));
     }
 
     make_heap(the_heap.begin(),the_heap.end(),MyHeap_comparison<true>);
 
-    while((atual = the_heap[0]).vertex!= &destiny)
+    while(!the_heap.empty())
     {
+        if ((atual = the_heap[0]).vertex == &destiny) break; // se for o destino sai
+
         pop_heap(the_heap.begin(),the_heap.end(),MyHeap_comparison<true>);
         the_heap.pop_back();
+
+        std::cout << "Puxei:" <<atual.vertex->get_coordinate() << " Custo:" << atual.cost <<" tem tantos arestas:" << atual.vertex->get_edges().size() << std::endl;
 
         unsigned int pos;
 

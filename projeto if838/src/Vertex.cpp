@@ -58,3 +58,8 @@ const vector<Vertex::Edge>& Vertex::get_edges()
 {
     return edges;
 }
+
+const Point& Vertex::get_coordinate()
+{
+    return coordinate;
+}

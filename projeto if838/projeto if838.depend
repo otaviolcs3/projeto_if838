@@ -93,45 +93,45 @@
 1405716466 source:d:\aulas ufpe\redes de acesso\projeto_if838\projeto if838\src\vertex.cpp
 	"../include/Vertex.h"
 
-1405682833 source:c:\users\mfrr\downloads\projeto_if838\projeto if838\src\mypair.cpp
+1405941013 source:c:\users\mfrr\downloads\projeto_if838\projeto if838\src\mypair.cpp
 	"../include/MyPair.h"
 
-1405682833 c:\users\mfrr\downloads\projeto_if838\projeto if838\include\mypair.h
+1405941012 c:\users\mfrr\downloads\projeto_if838\projeto if838\include\mypair.h
 	<utility>
 	<iostream>
 
-1405682833 source:c:\users\mfrr\downloads\projeto_if838\projeto if838\src\optimizationproblem.cpp
+1405941013 source:c:\users\mfrr\downloads\projeto_if838\projeto if838\src\optimizationproblem.cpp
 	"../include/OptimizationProblem.h"
 
-1405682833 c:\users\mfrr\downloads\projeto_if838\projeto if838\include\optimizationproblem.h
+1405941012 c:\users\mfrr\downloads\projeto_if838\projeto if838\include\optimizationproblem.h
 	"PONInstance.h"
 
-1405682833 c:\users\mfrr\downloads\projeto_if838\projeto if838\include\poninstance.h
+1405941012 c:\users\mfrr\downloads\projeto_if838\projeto if838\include\poninstance.h
 	<iostream>
 	<vector>
 	"MyPair.h"
 
-1405682833 source:c:\users\mfrr\downloads\projeto_if838\projeto if838\src\poninstance.cpp
+1405941013 source:c:\users\mfrr\downloads\projeto_if838\projeto if838\src\poninstance.cpp
 	"../include/PONInstance.h"
 	<algorithm>
 	<cassert>
 	<cmath>
 
-1405699886 source:c:\users\mfrr\downloads\projeto_if838\projeto if838\src\vertex.cpp
+1405945368 source:c:\users\mfrr\downloads\projeto_if838\projeto if838\src\vertex.cpp
 	"../include/Vertex.h"
 
-1405707048 c:\users\mfrr\downloads\projeto_if838\projeto if838\include\vertex.h
+1405945357 c:\users\mfrr\downloads\projeto_if838\projeto if838\include\vertex.h
 	<vector>
 	<utility>
 	"MyPair.h"
 
-1405707984 source:c:\users\mfrr\downloads\projeto_if838\projeto if838\src\main.cpp
+1405945444 source:c:\users\mfrr\downloads\projeto_if838\projeto if838\src\main.cpp
 	<iostream>
 	<cstdio>
 	"../include/MyPair.h"
 	"../include/Graph.h"
 
-1405707057 c:\users\mfrr\downloads\projeto_if838\projeto if838\include\graph.h
+1405945370 c:\users\mfrr\downloads\projeto_if838\projeto if838\include\graph.h
 	<vector>
 	<algorithm>
 	<iterator>
@@ -140,7 +140,7 @@
 	"Vertex.h"
 	"Heap_node.h"
 
-1405706823 source:c:\users\mfrr\downloads\projeto_if838\projeto if838\src\graph.cpp
+1405945372 source:c:\users\mfrr\downloads\projeto_if838\projeto if838\src\graph.cpp
 	"../include/Graph.h"
 
 1405700188 source:c:\users\mfrr\downloads\projeto_if838\projeto if838\src\solution_vertex.cpp
@@ -149,10 +149,10 @@
 1405700287 c:\users\mfrr\downloads\projeto_if838\projeto if838\include\solution_vertex.h
 	"Vertex.h"
 
-1405707939 c:\users\mfrr\downloads\projeto_if838\projeto if838\include\heap_node.h
+1405941012 c:\users\mfrr\downloads\projeto_if838\projeto if838\include\heap_node.h
 	"Vertex.h"
 
-1405707936 source:c:\users\mfrr\downloads\projeto_if838\projeto if838\src\heap_node.cpp
+1405941013 source:c:\users\mfrr\downloads\projeto_if838\projeto if838\src\heap_node.cpp
 	"../include/Heap_node.h"
 
 1405716198 d:\aulas ufpe\redes de acesso\projeto_if838\projeto if838\include\heap_node.h

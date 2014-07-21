@@ -25,7 +25,7 @@ class Graph
         ~Graph();
         Heap_node minimal_edges_between(Vertex&,Vertex&);
         void add_vertex(Vertex&);
-        const vector<Vertex>& get_vertices();
+        vector<Vertex>& get_vertices();
 
     private:
         vector<Vertex> vertices;

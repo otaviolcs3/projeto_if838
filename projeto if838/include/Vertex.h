@@ -22,6 +22,7 @@ class Vertex
         void connect(Vertex&,Cost);
         void update_cost(Vertex&,Cost);
         const vector<Edge>& get_edges();
+        const Point& get_coordinate();
         bool operator==(Vertex&);
 
     private:
