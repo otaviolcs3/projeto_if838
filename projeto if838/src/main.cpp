@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cstdio>
+#include "readosm.h"
+
 #include "../include/MyPair.h"
 #include "../include/Graph.h"
 
@@ -41,9 +43,7 @@ bool comp(pair<int,int>&left,pair<int,int>&right)
     else return false;
 }
 
-
-
-int main(int argc, char** argv)
+int main_(int argc, char** argv)
 {
 //    vector<pair<int,int> > my_vector;
 //    my_vector.push_back(pair<int,int>(0,0));
@@ -96,10 +96,10 @@ int main(int argc, char** argv)
 
     vertices[2].connect(vertices[4],5);
 
-    for(int i=0;i<vertices.size();i++)
+    for(unsigned int i=0;i<vertices.size();i++)
     {
         cout << "tem " << vertices[i].get_edges().size() << " arestas" << endl;
-        for(int j=0;j<vertices[i].get_edges().size();j++)
+        for(unsigned int j=0;j<vertices[i].get_edges().size();j++)
         {
               cout << vertices[i].get_coordinate() << " - " << (vertices[i].get_edges()[j].first)->get_coordinate()
                 << " : " <<vertices[i].get_edges()[j].second << endl;
@@ -115,7 +115,7 @@ int main(int argc, char** argv)
 
     cout << "Result ("<< result.solution.size() <<") :" << result.cost  <<" INF:" << UINT_MAX << endl;
 
-    for(int i =0 ; i<result.solution.size();i++)
+    for(unsigned int i =0 ; i<result.solution.size();i++)
     {
         cout << result.solution[i].first->get_coordinate() << endl;
     }
@@ -124,3 +124,50 @@ int main(int argc, char** argv)
 
     return 0;
 }
+
+static int print_node (const void *user_data, const readosm_node * node)
+{
+    printf("node: %lf %lf\n",node->latitude,node->longitude);
+
+    return READOSM_OK;
+}
+
+static int print_way (const void *user_data, const readosm_way * way)
+{
+    return READOSM_OK;
+}
+
+static int print_relation (const void *user_data, const readosm_relation * relation)
+{
+    return READOSM_OK;
+}
+
+int main (int argc, char *argv[])
+{
+    const void *osm_handle;
+    int ret;
+
+    ret = readosm_open ("map/map.osm", &osm_handle);
+
+    if (ret != READOSM_OK)
+    {
+        fprintf (stderr, "OPEN error: %d\n", ret);
+        goto stop;
+    }
+
+    ret = readosm_parse (osm_handle,NULL,print_node, print_way,print_relation);
+
+    if (ret != READOSM_OK)
+    {
+        fprintf (stderr, "PARSE error: %d\n", ret);
+        goto stop;
+    }
+
+    fprintf (stderr, "Ok, OSM input file successfully parsed\n");
+
+stop:
+    readosm_close (osm_handle);
+    return 0;
+}
+
+

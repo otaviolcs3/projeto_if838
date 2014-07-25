@@ -161,3 +161,78 @@
 1405725021 source:d:\aulas ufpe\redes de acesso\projeto_if838\projeto if838\src\heap_node.cpp
 	"../include/Heap_node.h"
 
+1406284454 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/Graph.cpp
+	"../include/Graph.h"
+
+1406284454 /home/felipe/Documentos/projeto_if838/projeto if838/include/Graph.h
+	<vector>
+	<algorithm>
+	<iterator>
+	<utility>
+	<climits>
+	"Vertex.h"
+	"Heap_node.h"
+
+1406317157 /home/felipe/Documentos/projeto_if838/projeto if838/include/Vertex.h
+	<vector>
+	<utility>
+	"MyPair.h"
+
+1406284454 /home/felipe/Documentos/projeto_if838/projeto if838/include/MyPair.h
+	<utility>
+	<iostream>
+
+1406284454 /home/felipe/Documentos/projeto_if838/projeto if838/include/Heap_node.h
+	"Vertex.h"
+
+1406284454 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/Heap_node.cpp
+	"../include/Heap_node.h"
+
+1406318235 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/main.cpp
+	<iostream>
+	<cstdio>
+	"readosm.h"
+	"../include/MyPair.h"
+	"../include/Graph.h"
+
+1406284454 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/MyPair.cpp
+	"../include/MyPair.h"
+
+1406284454 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/OptimizationProblem.cpp
+	"../include/OptimizationProblem.h"
+
+1406284752 /home/felipe/Documentos/projeto_if838/projeto if838/include/OptimizationProblem.h
+	"PONInstance.h"
+
+1406284454 /home/felipe/Documentos/projeto_if838/projeto if838/include/PONInstance.h
+	<iostream>
+	<vector>
+	"MyPair.h"
+
+1406284454 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/PONInstance.cpp
+	"../include/PONInstance.h"
+	<algorithm>
+	<cassert>
+	<cmath>
+
+1406317120 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/Vertex.cpp
+	"../include/Vertex.h"
+
+1406304754 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/test_osm1.c
+	<stdio.h>
+	"readosm.h"
+
+1406308842 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/test_osm1.cpp
+	<stdio.h>
+	<iostream>
+	"readosm.h"
+
+1406318222 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/Read_OSM.cpp
+	"../include/Read_OSM.h"
+
+1406315841 /home/felipe/Documentos/projeto_if838/projeto if838/include/Read_OSM.h
+	"Graph.h"
+	"exception"
+	"readosm.h"
+	"PONInstance.h"
+

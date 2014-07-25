@@ -16,7 +16,8 @@ class Vertex
     typedef pair<Vertex*,Cost> Edge;
 
     public:
-        Vertex(Point);
+        Vertex(Point); //so pra debug
+        Vertex(Point,const long long id);
         Vertex();
         virtual ~Vertex();
         void connect(Vertex&,Cost);
@@ -28,6 +29,7 @@ class Vertex
     private:
         vector<Edge> edges;
         Point coordinate;
+        const long long id;
 
 };
 

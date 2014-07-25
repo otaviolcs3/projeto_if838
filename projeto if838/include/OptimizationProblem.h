@@ -24,7 +24,7 @@ class OptimizationProblem
     protected:
     private:
         static double norm(const Vector2&);
-        static const double smallValue = 1e-5;
+        static constexpr double smallValue = 1e-5;
 };
 
 

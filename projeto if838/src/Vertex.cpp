@@ -1,6 +1,11 @@
 #include "../include/Vertex.h"
 
-Vertex::Vertex(Point coordinate)
+Vertex::Vertex(Point coordinate):id(0) //so pra debug
+{
+    this->coordinate=coordinate;
+}
+
+Vertex::Vertex(Point coordinate,const long long ID):id(ID)
 {
     this->coordinate=coordinate;
 }
@@ -23,8 +28,8 @@ void Vertex::connect(Vertex& vert, Cost distance)
 }
 
 
-/// duvida se uso ponteiro ou coordenada pra decidir se 2 vertices s„o iguais
-void Vertex::update_cost(Vertex& vert, Cost new_distance) // pode futuramente adicionar exceÁ„o de n„o encotrar o vertice
+/// duvida se uso ponteiro ou coordenada pra decidir se 2 vertices s√£o iguais
+void Vertex::update_cost(Vertex& vert, Cost new_distance) // pode futuramente adicionar exce√ß√£o de n√£o encotrar o vertice
 {
     unsigned int size_ = edges.size();
     Vertex *opposite = NULL;
