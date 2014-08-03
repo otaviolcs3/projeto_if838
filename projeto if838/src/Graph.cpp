@@ -49,17 +49,17 @@ Graph::~Graph()
     //dtor
 }
 
-void Graph::add_vertex(Vertex& vert)
+void Graph::add_vertex(Vertex* vert)
 {
     vertices.push_back(vert);
 }
 
-vector<Vertex>& Graph::get_vertices()
+vector<Vertex*>& Graph::get_vertices()
 {
     return vertices;
 }
 
-Heap_node Graph::minimal_edges_between(Vertex& origin,Vertex& destiny) // pode futuramente adicionar exceção de não encotrar o vertice
+Heap_node Graph::minimal_edges_between(Vertex* origin,Vertex* destiny) // pode futuramente adicionar exceção de não encotrar o vertice
 {
     vector<Heap_node> the_heap;
     unsigned int size_ = vertices.size();
@@ -68,17 +68,17 @@ Heap_node Graph::minimal_edges_between(Vertex& origin,Vertex& destiny) // pode f
 
     for(unsigned int i=0;i<size_;i++)
     {
-        std::cout << "Puxei:" <<vertices[i].get_coordinate() << " tem tantos arestas:" << vertices[i].get_edges().size() << std::endl;
+        std::cout << "Puxei:" <<vertices[i]->get_coordinate() << " tem tantos arestas:" << vertices[i]->get_edges().size() << std::endl;
 
-        if(&vertices[i] != &origin) the_heap.push_back(Heap_node(&vertices[i],UINT_MAX));
-        else the_heap.push_back(Heap_node(&vertices[i],0));
+        if(vertices[i] != origin) the_heap.push_back(Heap_node(vertices[i],std::numeric_limits<double>::max()));
+        else the_heap.push_back(Heap_node(vertices[i],0));
     }
 
     make_heap(the_heap.begin(),the_heap.end(),MyHeap_comparison<true>);
 
     while(!the_heap.empty())
     {
-        if ((atual = the_heap[0]).vertex == &destiny) break; // se for o destino sai
+        if ((atual = the_heap[0]).vertex == destiny) break; // se for o destino sai
 
         pop_heap(the_heap.begin(),the_heap.end(),MyHeap_comparison<true>);
         the_heap.pop_back();
@@ -106,6 +106,9 @@ Heap_node Graph::minimal_edges_between(Vertex& origin,Vertex& destiny) // pode f
 
     return atual;
 }
+
+
+
 
 
 

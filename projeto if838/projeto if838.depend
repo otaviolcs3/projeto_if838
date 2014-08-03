@@ -161,68 +161,69 @@
 1405725021 source:d:\aulas ufpe\redes de acesso\projeto_if838\projeto if838\src\heap_node.cpp
 	"../include/Heap_node.h"
 
-1406284454 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/Graph.cpp
+1407103346 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/Graph.cpp
 	"../include/Graph.h"
 
-1406284454 /home/felipe/Documentos/projeto_if838/projeto if838/include/Graph.h
+1407099366 /home/felipe/Documentos/projeto_if838/projeto if838/include/Graph.h
 	<vector>
 	<algorithm>
 	<iterator>
 	<utility>
 	<climits>
+	<limits>
 	"Vertex.h"
 	"Heap_node.h"
 
-1406317157 /home/felipe/Documentos/projeto_if838/projeto if838/include/Vertex.h
+1407101968 /home/felipe/Documentos/projeto_if838/projeto if838/include/Vertex.h
 	<vector>
 	<utility>
 	"MyPair.h"
 
-1406284454 /home/felipe/Documentos/projeto_if838/projeto if838/include/MyPair.h
+1407095828 /home/felipe/Documentos/projeto_if838/projeto if838/include/MyPair.h
 	<utility>
 	<iostream>
 
-1406284454 /home/felipe/Documentos/projeto_if838/projeto if838/include/Heap_node.h
+1407095828 /home/felipe/Documentos/projeto_if838/projeto if838/include/Heap_node.h
 	"Vertex.h"
 
-1406284454 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/Heap_node.cpp
+1407095828 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/Heap_node.cpp
 	"../include/Heap_node.h"
 
-1406318235 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/main.cpp
+1407096471 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/main.cpp
 	<iostream>
 	<cstdio>
-	"readosm.h"
 	"../include/MyPair.h"
 	"../include/Graph.h"
+	"../include/OSM_read.h"
 
-1406284454 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/MyPair.cpp
+1407101711 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/MyPair.cpp
 	"../include/MyPair.h"
 
-1406284454 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/OptimizationProblem.cpp
+1407095828 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/OptimizationProblem.cpp
 	"../include/OptimizationProblem.h"
 
-1406284752 /home/felipe/Documentos/projeto_if838/projeto if838/include/OptimizationProblem.h
+1407095828 /home/felipe/Documentos/projeto_if838/projeto if838/include/OptimizationProblem.h
 	"PONInstance.h"
 
-1406284454 /home/felipe/Documentos/projeto_if838/projeto if838/include/PONInstance.h
+1407095828 /home/felipe/Documentos/projeto_if838/projeto if838/include/PONInstance.h
 	<iostream>
 	<vector>
 	"MyPair.h"
 
-1406284454 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/PONInstance.cpp
+1407095828 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/PONInstance.cpp
 	"../include/PONInstance.h"
 	<algorithm>
 	<cassert>
 	<cmath>
 
-1406317120 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/Vertex.cpp
+1407101955 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/Vertex.cpp
 	"../include/Vertex.h"
 
 1406304754 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/test_osm1.c
 	<stdio.h>
 	"readosm.h"
 
-1406308842 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/test_osm1.cpp
+1407095828 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/test_osm1.cpp
 	<stdio.h>
 	<iostream>
 	"readosm.h"
@@ -235,4 +236,45 @@
 	"exception"
 	"readosm.h"
 	"PONInstance.h"
+
+1407100752 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/OSM_basic_classes.cpp
+	"../include/OSM_basic_classes.h"
+
+1407093163 /home/felipe/Documentos/projeto_if838/projeto if838/include/OSM_basic_classes.h
+	<cstdio>
+	<cstring>
+	<vector>
+
+1407101137 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/OSM_read.cpp
+	"../include/OSM_read.h"
+
+1407101130 /home/felipe/Documentos/projeto_if838/projeto if838/include/OSM_read.h
+	"OSM_basic_classes.h"
+	<expat.h>
+	<cstring>
+	<exception>
+	<vector>
+	<map>
+
+1407102022 source:/home/felipe/Documentos/projeto_if838/projeto if838/main.cpp
+	<iostream>
+	<cstdio>
+	"../include/MyPair.h"
+	"../include/Graph.h"
+	"../include/OSM_read.h"
+	<cstdio>
+	<iostream>
+	"include/OSM_read.h"
+	<map>
+	<string>
+	<iostream>
+	<iterator>
+
+1407103180 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/OSM_to_Graph.cpp
+	"../include/OSM_to_Graph.h"
+
+1407102939 /home/felipe/Documentos/projeto_if838/projeto if838/include/OSM_to_Graph.h
+	"OSM_read.h"
+	"Graph.h"
+	<cmath>
 

@@ -36,18 +36,22 @@
 		<Unit filename="include/Graph.h" />
 		<Unit filename="include/Heap_node.h" />
 		<Unit filename="include/MyPair.h" />
+		<Unit filename="include/OSM_basic_classes.h" />
+		<Unit filename="include/OSM_read.h" />
+		<Unit filename="include/OSM_to_Graph.h" />
 		<Unit filename="include/OptimizationProblem.h" />
 		<Unit filename="include/PONInstance.h" />
-		<Unit filename="include/Read_OSM.h" />
 		<Unit filename="include/Vertex.h" />
+		<Unit filename="main.cpp" />
 		<Unit filename="src/Graph.cpp" />
 		<Unit filename="src/Heap_node.cpp" />
 		<Unit filename="src/MyPair.cpp" />
+		<Unit filename="src/OSM_basic_classes.cpp" />
+		<Unit filename="src/OSM_read.cpp" />
+		<Unit filename="src/OSM_to_Graph.cpp" />
 		<Unit filename="src/OptimizationProblem.cpp" />
 		<Unit filename="src/PONInstance.cpp" />
-		<Unit filename="src/Read_OSM.cpp" />
 		<Unit filename="src/Vertex.cpp" />
-		<Unit filename="src/main.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

@@ -1,0 +1,24 @@
+ <osm version="0.6" generator="CGImap 0.3.3 (6320 thorn-01.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ 
+<node id="994112609" visible="true" version="5" changeset="14403162" timestamp="2012-12-25T18:30:39Z" user="maiafelipe" uid="494571" lat="-8.0346685" lon="-34.9115525"/>
+ <node id="994112641" visible="true" version="5" changeset="14408315" timestamp="2012-12-26T04:55:17Z" user="maiafelipe" uid="494571" lat="-8.0354099" lon="-34.9103575"/>
+  <node id="1019984730" visible="true" version="4" changeset="14408315" timestamp="2012-12-26T04:55:18Z" user="maiafelipe" uid="494571" lat="-8.0358258" lon="-34.9096496"/>
+ 
+  <way id="85683726" visible="true" version="5" changeset="16337095" timestamp="2013-05-29T11:58:20Z" user="TrvrHldr" uid="230234">
+  <nd ref="994112609"/>
+  <nd ref="994112641"/>
+  <nd ref="1019984730"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="name" v="Rua Virgínia Loreto"/>
+  <tag k="oneway" v="yes"/>
+ </way>
+ 
+  <relation id="2695706" visible="true" version="1" changeset="14611931" timestamp="2013-01-11T16:20:18Z" user="Thiago Arrais" uid="163566">
+  <member type="way" ref="132399507" role="from"/>
+  <member type="node" ref="1475491092" role="via"/>
+  <member type="way" ref="200622557" role="to"/>
+  <tag k="restriction" v="only_straight_on"/>
+  <tag k="type" v="restriction"/>
+ </relation>
+ 
+ </osm>

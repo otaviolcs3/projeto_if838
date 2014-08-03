@@ -9,20 +9,20 @@ using std::vector;
 using std::pair;
 
 typedef MyPair Point;
-typedef unsigned int Cost;
+typedef double Cost;
 
 class Vertex
 {
     typedef pair<Vertex*,Cost> Edge;
 
     public:
-        Vertex(Point); //so pra debug
-        Vertex(Point,const long long id);
+        Vertex(Point&,long long id);
+        Vertex(Point,long long id);
         Vertex();
         virtual ~Vertex();
         void connect(Vertex&,Cost);
         void update_cost(Vertex&,Cost);
-        const vector<Edge>& get_edges();
+        vector<Edge>& get_edges();
         const Point& get_coordinate();
         bool operator==(Vertex&);
 

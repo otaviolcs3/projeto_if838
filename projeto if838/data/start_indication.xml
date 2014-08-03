@@ -1,0 +1,8 @@
+<data>
+    <header length="4">
+            <item name="time" type="time">16</item>
+            <item name="ref" type="string">3843747</item>
+            <item name="port" type="int16">0</item>
+            <item name="frame" type="int16">20</item>
+    </header>
+</data>

@@ -8,7 +8,8 @@ MyPair::MyPair(double first,double second)
 
 MyPair::MyPair()
 {
-    //ctor
+    this->first = 0;
+    this->second = 0;
 }
 
 MyPair::~MyPair()

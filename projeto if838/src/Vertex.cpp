@@ -1,11 +1,11 @@
 #include "../include/Vertex.h"
 
-Vertex::Vertex(Point coordinate):id(0) //so pra debug
+Vertex::Vertex(Point& coordinate, long long ID):id(ID)
 {
     this->coordinate=coordinate;
 }
 
-Vertex::Vertex(Point coordinate,const long long ID):id(ID)
+Vertex::Vertex(Point coordinate, long long ID):id(ID)
 {
     this->coordinate=coordinate;
 }
@@ -17,7 +17,7 @@ Vertex::~Vertex()
 
 bool Vertex::operator==(Vertex& vert)
 {
-    if(coordinate == vert.coordinate) return true;
+    if(id == vert.id) return true;
     else return false;
 }
 
@@ -59,7 +59,7 @@ void Vertex::update_cost(Vertex& vert, Cost new_distance) // pode futuramente ad
     }
 }
 
-const vector<Vertex::Edge>& Vertex::get_edges()
+vector<Vertex::Edge>& Vertex::get_edges()
 {
     return edges;
 }

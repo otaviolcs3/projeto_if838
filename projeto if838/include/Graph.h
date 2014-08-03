@@ -7,6 +7,7 @@
 #include <iterator>
 #include <utility>
 #include <climits>
+#include <limits>
 
 #include "Vertex.h"
 #include "Heap_node.h"
@@ -23,12 +24,12 @@ class Graph
     public:
         Graph();
         ~Graph();
-        Heap_node minimal_edges_between(Vertex&,Vertex&);
-        void add_vertex(Vertex&);
-        vector<Vertex>& get_vertices();
+        Heap_node minimal_edges_between(Vertex*,Vertex*);
+        void add_vertex(Vertex*);
+        vector<Vertex*>& get_vertices();
 
     private:
-        vector<Vertex> vertices;
+        vector<Vertex*> vertices;
 };
 
 bool MyHeap_comparison(Heap_node& left, Heap_node& right);
