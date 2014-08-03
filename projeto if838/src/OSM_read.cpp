@@ -8,7 +8,18 @@ OSM_control::OSM_control()
 
 OSM_control::~OSM_control()
 {
-
+    for(size_t i =0; i<nodes.size(); i++)
+    {
+        delete nodes[i];
+    }
+    for(size_t i =0; i<ways.size(); i++)
+    {
+        delete ways[i];
+    }
+    for(size_t i =0; i<relations.size(); i++)
+    {
+        delete relations[i];
+    }
 }
 
 OSM_read::OSM_read(size_t buffer_size)

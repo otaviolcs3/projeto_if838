@@ -174,7 +174,7 @@
 	"Vertex.h"
 	"Heap_node.h"
 
-1407101968 /home/felipe/Documentos/projeto_if838/projeto if838/include/Vertex.h
+1407106803 /home/felipe/Documentos/projeto_if838/projeto if838/include/Vertex.h
 	<vector>
 	<utility>
 	"MyPair.h"
@@ -216,7 +216,7 @@
 	<cassert>
 	<cmath>
 
-1407101955 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/Vertex.cpp
+1407106898 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/Vertex.cpp
 	"../include/Vertex.h"
 
 1406304754 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/test_osm1.c
@@ -237,7 +237,7 @@
 	"readosm.h"
 	"PONInstance.h"
 
-1407100752 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/OSM_basic_classes.cpp
+1407108281 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/OSM_basic_classes.cpp
 	"../include/OSM_basic_classes.h"
 
 1407093163 /home/felipe/Documentos/projeto_if838/projeto if838/include/OSM_basic_classes.h
@@ -245,7 +245,7 @@
 	<cstring>
 	<vector>
 
-1407101137 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/OSM_read.cpp
+1407108166 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/OSM_read.cpp
 	"../include/OSM_read.h"
 
 1407101130 /home/felipe/Documentos/projeto_if838/projeto if838/include/OSM_read.h
@@ -256,19 +256,16 @@
 	<vector>
 	<map>
 
-1407102022 source:/home/felipe/Documentos/projeto_if838/projeto if838/main.cpp
+1407108039 source:/home/felipe/Documentos/projeto_if838/projeto if838/main.cpp
 	<iostream>
 	<cstdio>
+	<map>
+	<string>
+	<iterator>
 	"../include/MyPair.h"
 	"../include/Graph.h"
 	"../include/OSM_read.h"
-	<cstdio>
-	<iostream>
-	"include/OSM_read.h"
-	<map>
-	<string>
-	<iostream>
-	<iterator>
+	"../include/OSM_to_Graph.h"
 
 1407103180 source:/home/felipe/Documentos/projeto_if838/projeto if838/src/OSM_to_Graph.cpp
 	"../include/OSM_to_Graph.h"

@@ -24,12 +24,13 @@ class Vertex
         void update_cost(Vertex&,Cost);
         vector<Edge>& get_edges();
         const Point& get_coordinate();
+        const long long int get_id();
         bool operator==(Vertex&);
 
     private:
         vector<Edge> edges;
         Point coordinate;
-        const long long id;
+        const long long int id;
 
 };
 

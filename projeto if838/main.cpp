@@ -1,9 +1,13 @@
 #include <iostream>
 #include <cstdio>
+#include <map>
+#include <string>
+#include <iterator>
 
 #include "../include/MyPair.h"
 #include "../include/Graph.h"
 #include "../include/OSM_read.h"
+#include "../include/OSM_to_Graph.h"
 
 using namespace std;
 
@@ -43,98 +47,7 @@ bool comp(pair<int,int>&left,pair<int,int>&right)
     else return false;
 }
 
-int main1(int argc, char** argv)
-{
-//    vector<pair<int,int> > my_vector;
-//    my_vector.push_back(pair<int,int>(0,0));
-//    my_vector.push_back(pair<int,int>(1,1));
-//    my_vector.push_back(pair<int,int>(2,2));
-//    my_vector.push_back(pair<int,int>(3,3));
-//    my_vector.push_back(pair<int,int>(4,4));
-//    my_vector.push_back(pair<int,int>(5,5));
-//    my_vector.push_back(pair<int,int>(6,6));
-//
-//    make_heap(my_vector.begin(),my_vector.end(),comp);
-//
-//    my_vector[3].second = -1;
-//    sobe(my_vector,3);
-//
-//
-//    for(unsigned int i =0 ; i < my_vector.size();i++)
-//    {
-//        printf("(%d,%d) (%d)\r\n",my_vector[i].first,my_vector[i].second,i);
-//    }
 
-    Graph test;
-    test.add_vertex( (new Vertex(Point(0,0),0)));
-    test.add_vertex( (new Vertex(Point(1,0),1)));
-    test.add_vertex( (new Vertex(Point(2,0),2)));
-    test.add_vertex( (new Vertex(Point(3,0),3)));
-    test.add_vertex( (new Vertex(Point(4,0),4)));
-    test.add_vertex( (new Vertex(Point(5,0),5)));
-    test.add_vertex( (new Vertex(Point(6,0),6)));
-    test.add_vertex( (new Vertex(Point(7,0),7)));
-    test.add_vertex( (new Vertex(Point(8,0),8)));
-    test.add_vertex( (new Vertex(Point(9,0),9)));
-
-    vector<Vertex*>& vertices = test.get_vertices();
-
-    for(int i=0;i<10;i++)
-    {
-          cout << vertices[i]->get_coordinate() << endl;
-    }
-
-    cout << endl << endl << endl;
-
-    vertices[0]->connect(*vertices[2],10);
-    vertices[0]->connect(*vertices[3],3);
-    vertices[0]->connect(*vertices[1],7);
-
-    vertices[3]->connect(*vertices[2],2);
-    //vertices[3]->update_cost(*vertices[2],4);
-
-    vertices[1]->connect(*vertices[4],4);
-
-    vertices[2]->connect(*vertices[4],5);
-
-    for(unsigned int i=0;i<vertices.size();i++)
-    {
-        cout << "tem " << vertices[i]->get_edges().size() << " arestas" << endl;
-        for(unsigned int j=0;j<vertices[i]->get_edges().size();j++)
-        {
-              cout << vertices[i]->get_coordinate() << " - " << (vertices[i]->get_edges()[j].first)->get_coordinate()
-                << " : " <<vertices[i]->get_edges()[j].second << endl;
-        }
-
-        cout << endl;
-    }
-
-    cout << endl;
-    cout << endl;
-
-    Heap_node result = test.minimal_edges_between(vertices[0],vertices[4]);
-
-    cout << "Result ("<< result.solution.size() <<") :" << result.cost  <<" INF:" << UINT_MAX << endl;
-
-    for(unsigned int i =0 ; i<result.solution.size();i++)
-    {
-        cout << result.solution[i].first->get_coordinate() << endl;
-    }
-
-    cout << "Fim" << endl;
-
-    return 0;
-}
-
-
-#include <cstdio>
-#include <iostream>
-#include "include/OSM_read.h"
-
-#include <map>
-#include <string>
-#include <iostream>
-#include <iterator>
 
 int main2() {
   std::map<int,std::string> a_map;
@@ -180,7 +93,36 @@ int main()
     for(size_t i =0; i < controle->relations.size();i++)
         controle->relations[i]->print_relation();
 
+    auto grafo = OSM_to_Graph(controle);
+    auto vertices = grafo->get_vertices();
+    Vertex *a,*b;
 
+    for(size_t i=0;i<vertices.size();i++)
+    {
+        if(vertices[i]->get_id()==4)
+        {
+            a =vertices[i];
+        }
+    }
+
+    for(size_t i=0;i<vertices.size();i++)
+    {
+        if(vertices[i]->get_id()==2)
+        {
+            b =vertices[i];
+        }
+    }
+
+    Heap_node result = grafo->minimal_edges_between(a,b);
+
+    cout << "Result ("<< result.solution.size() <<") :" << result.cost << endl;
+
+    for(unsigned int i =0 ; i<result.solution.size();i++)
+    {
+        cout << result.solution[i].first->get_id()<<" : "<<result.solution[i].second << endl;
+    }
+
+    cout << endl <<result.cost << endl;
 
     return 0;
 }

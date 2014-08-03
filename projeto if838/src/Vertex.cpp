@@ -1,11 +1,11 @@
 #include "../include/Vertex.h"
 
-Vertex::Vertex(Point& coordinate, long long ID):id(ID)
+Vertex::Vertex(Point& coordinate, long long int id_):id(id_)
 {
     this->coordinate=coordinate;
 }
 
-Vertex::Vertex(Point coordinate, long long ID):id(ID)
+Vertex::Vertex(Point coordinate, long long int id_):id(id_)
 {
     this->coordinate=coordinate;
 }
@@ -67,4 +67,9 @@ vector<Vertex::Edge>& Vertex::get_edges()
 const Point& Vertex::get_coordinate()
 {
     return coordinate;
+}
+
+const long long int Vertex::get_id()
+{
+    return id;
 }
