@@ -68,7 +68,7 @@ Heap_node Graph::minimal_edges_between(Vertex* origin,Vertex* destiny) // pode f
 
     for(unsigned int i=0;i<size_;i++)
     {
-        std::cout << "Puxei:" <<vertices[i]->get_coordinate() << " tem tantos arestas:" << vertices[i]->get_edges().size() << std::endl;
+        //std::cout << "Puxei:" <<vertices[i]->get_coordinate() << " tem tantos arestas:" << vertices[i]->get_edges().size() << std::endl;
 
         if(vertices[i] != origin) the_heap.push_back(Heap_node(vertices[i],std::numeric_limits<double>::max()));
         else the_heap.push_back(Heap_node(vertices[i],0));
@@ -83,7 +83,7 @@ Heap_node Graph::minimal_edges_between(Vertex* origin,Vertex* destiny) // pode f
         pop_heap(the_heap.begin(),the_heap.end(),MyHeap_comparison<true>);
         the_heap.pop_back();
 
-        std::cout << "Puxei:" <<atual.vertex->get_coordinate() << " Custo:" << atual.cost <<" tem tantos arestas:" << atual.vertex->get_edges().size() << std::endl;
+        //std::cout << "Puxei:" <<atual.vertex->get_coordinate() << " Custo:" << atual.cost <<" tem tantos arestas:" << atual.vertex->get_edges().size() << std::endl;
 
         unsigned int pos;
 
